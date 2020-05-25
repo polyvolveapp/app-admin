@@ -1,0 +1,20 @@
+@import "vars.scss";
+
+.pageTitle {
+	margin-bottom: 0.6rem;
+}
+
+.buttonBarWithAdd {
+	margin-top: 0.6rem;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.listItem {
+
+}
+
+.rowItem {
+	display: grid;
+	grid-template-columns: auto max-content max-content;
+}

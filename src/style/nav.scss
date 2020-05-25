@@ -1,0 +1,67 @@
+@import "vars.scss";
+
+.userHeader {
+	background-color: $bg-content;
+	width: 200px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid $bg-content-diff;
+	justify-content: center;
+}
+
+.navContainer {
+	display: flex;
+	position: relative;
+	align-items: center;
+	transition: all 0.2s ease 0s;
+	border-bottom: 1px solid $bg-content-diff;
+	height: 2.2rem;
+	flex-grow: 1;
+	background-color: $bg-content;
+	
+	.navRight {
+		position: absolute;
+		right: 1%;
+		top: 50%;
+		transform: translateY(-50%);
+
+		display: flex;
+
+		.navRightList {
+			display: flex;
+			align-items: center;
+
+			li {
+				padding: 0 8px;
+			}
+		}
+	}
+
+	.navCenter {
+		.navCenterList {
+			display: flex;
+			li {
+				padding: 0.4rem;
+				a {
+					display: flex;
+				}
+			}
+		}
+	}
+
+	ul>li>.active {
+		color: $logo;
+
+		&::after {
+			display: table;
+			clear: both;
+			content: "";
+		}
+	}
+
+	svg {
+		vertical-align: middle;
+	}
+
+
+}
