@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { RootState } from "../../redux"
 
 import * as chevronDownIcon from "../../assets/icons/chevron-down.svg"
-import * as userHeaderStyle from "../../style/nav.scss"
+import * as userHeaderStyle from "../../style//nav.module.scss"
 import { Icon } from "polyvolve-ui/lib/icons"
 
 interface Props {

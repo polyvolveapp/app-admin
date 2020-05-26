@@ -3,7 +3,7 @@ import * as React from "react"
 import UI from "../../src/components/ui"
 import TeamList from "../../src/components/team/overview/TeamOverview"
 
-import * as style from "../../src/style/overview/team.scss"
+import * as teamStyle from "../../src/style/overview/team.module.scss"
 import { DynamicAuth } from "../../src/components/auth/DynamicAuth"
 import { Notification } from "polyvolve-ui/lib"
 import { PRE_ALPHA_NOTIFICATION_TEXT } from "../../src/constants/env"
@@ -25,7 +25,7 @@ export default props => {
         sidebarLeftComponent={<SidebarLeft />}
         showSidebarRight={true}
         sidebarRightComponent={<SidebarRight />}>
-        <div className={style.leadersGrid}>
+        <div className={teamStyle.leadersGrid}>
           <Notification type="warning">
             {PRE_ALPHA_NOTIFICATION_TEXT}
           </Notification>

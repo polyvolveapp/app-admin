@@ -6,12 +6,12 @@ import LoadingBar from "react-redux-loading-bar"
 import { Header } from "polyvolve-ui/lib"
 import Footer from "./Footer"
 import Navigation from "./Navigation"
-import Sidebar, { SidebarTitle, SidebarCategory } from "./Sidebar"
+import Sidebar from "./Sidebar"
 
-import * as style from "../../style/style.scss"
-import * as layoutStyle from "../../style/layout.scss"
+import * as layoutStyle from "../../style/layout.module.scss"
 import UserHeader from "./UserHeader"
 import NotificationMessageContainer from "./message/NotificationMessageContainer";
+import { style } from "../../../pages/_app"
 
 interface Props {
   showSidebarLeft: boolean

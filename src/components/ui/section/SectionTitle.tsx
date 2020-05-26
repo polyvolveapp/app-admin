@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import * as style from "../../../style/single.scss"
+import * as style from "../../../style/single.module.scss"
 import { SectionSize } from "./Section";
 import { cx } from "../../../lib/reexports";
 

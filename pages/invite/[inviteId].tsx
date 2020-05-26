@@ -13,12 +13,12 @@ import {
   LightFooter,
   Error,
 } from "polyvolve-ui/lib"
-import * as style from "../src/style/style.scss"
-import * as registerStyle from "../src/style/auth.scss"
+import * as registerStyle from "../src/style/auth.module.scss"
 import { withRouter } from "next/router"
 import { SITE_NAME } from "../../src/constants/env"
 import { RootState } from "../../src/redux"
 import { WithRouterProps } from "next/dist/client/with-router"
+import { style } from "../../src/lib/reexports"
 
 interface Props extends WithRouterProps {
   error: string

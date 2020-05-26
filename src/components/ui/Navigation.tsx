@@ -1,7 +1,7 @@
 import * as React from "react"
 import { NavigationItem } from "../utils"
 
-import * as navStyle from "../../style/nav.scss"
+import * as navStyle from "../../style//nav.module.scss"
 import * as settingsIcon from "../../assets/icons/settings.svg"
 import Search from "../utils/Search"
 

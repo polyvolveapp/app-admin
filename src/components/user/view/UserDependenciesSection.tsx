@@ -7,7 +7,7 @@ import {
   Button,
 } from "polyvolve-ui/lib"
 
-import * as singleStyle from "../../../style/single.scss"
+import * as singleStyle from "../../../style/single.module.scss"
 import SectionButtonBar from "../../ui/section/SectionButtonBar"
 import SectionHeader from "../../ui/section/SectionHeader"
 import Subsection from "../../ui/section/Subsection"

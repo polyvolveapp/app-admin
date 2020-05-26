@@ -4,7 +4,7 @@ import Link from "next/link"
 import { SelectElementMenuComponent } from "polyvolve-ui/lib/nav/SelectElementMenu";
 import { getUserName } from "../../../lib/format"
 
-import * as singleStyle from "../../../style/single.scss"
+import * as singleStyle from "../../../style/single.module.scss"
 import { User } from "polyvolve-ui/lib/@types"
 
 interface UserItemProps {

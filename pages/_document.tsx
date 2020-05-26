@@ -43,7 +43,7 @@ export default class extends Document {
             name="format-detection"
             content="telephone=no, address=no, email=no"
           />
-
+          
           <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"

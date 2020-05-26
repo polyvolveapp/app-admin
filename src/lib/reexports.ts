@@ -1,14 +1,13 @@
 import cx from "classnames"
 import Select from "react-select"
-import * as modalStyle from "../style/modal.scss"
-import * as singleStyle from "../style/single.scss"
-import * as componentStyle from "../style/component.scss"
-import * as formStyle from "../style/form.scss"
-import * as schemaStyle from "../style/schema.scss"
-import * as style from "../style/style.scss"
-import * as overviewStyle from "../style/overview/overview.scss"
-import * as reviewMasterOverviewStyle from "../style/overview/reviewmaster.scss"
-import * as dashboardStyle from "../style/dashboard.scss"
+import * as modalStyle from "../style/modal.module.scss"
+import * as singleStyle from "../style/single.module.scss"
+import * as formStyle from "../style/form.module.scss"
+import * as schemaStyle from "../style/schema.module.scss"
+import * as overviewStyle from "../style/overview/overview.module.scss"
+import * as reviewMasterOverviewStyle from "../style/overview/reviewmaster.module.scss"
+import * as dashboardStyle from "../style/dashboard.module.scss"
+import { componentStyle, style } from "../../pages/_app"
 
 /**
  * The purpose is to provide auto import for often used objects which can
@@ -18,12 +17,12 @@ import * as dashboardStyle from "../style/dashboard.scss"
 export {
   cx,
   modalStyle,
-  style,
   formStyle,
   schemaStyle,
   singleStyle,
-  componentStyle,
   Select,
+  style,
+  componentStyle,
   overviewStyle,
   dashboardStyle,
   reviewMasterOverviewStyle

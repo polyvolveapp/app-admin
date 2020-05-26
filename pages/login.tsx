@@ -7,10 +7,11 @@ import Router from "next/router"
 
 import { Logo, LoadButton, LightFooter, Error } from "polyvolve-ui/lib"
 
-import * as style from "../src/style/style.scss"
-import * as loginStyle from "../src/style/auth.scss"
+import * as loginStyle from "../src/style/auth.module.scss"
+
 import { AuthActions } from "../src/redux/auth"
 import { RootState } from "../src/redux"
+import { style } from "../src/lib/reexports"
 
 interface Props {
   error?: string

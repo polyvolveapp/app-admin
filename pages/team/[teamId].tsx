@@ -1,17 +1,18 @@
 import * as React from "react"
-import UI from "../src/components/ui"
+import UI from "../../src/components/ui"
 
-import * as style from "../src/style/single.scss"
-import TeamView from "../src/components/team/view/TeamView"
-import { withRouter } from "next/router"
-import { DataLoader } from "../src/components/utils"
-import TeamSidebar from "../src/components/team/TeamSidebar"
-import { DynamicAuth } from "../src/components/auth/DynamicAuth"
-import { PRE_ALPHA_NOTIFICATION_TEXT } from "../src/constants/env"
+import * as singleStyle from "../src/style/single.module.scss"
+import TeamView from "../../src/components/team/view/TeamView"
+import { withRouter, useRouter } from "next/router"
+import { DataLoader } from "../../src/components/utils"
+import TeamSidebar from "../../src/components/team/TeamSidebar"
+import { DynamicAuth } from "../../src/components/auth/DynamicAuth"
+import { PRE_ALPHA_NOTIFICATION_TEXT } from "../../src/constants/env"
 import { Notification } from "polyvolve-ui/lib"
 
-const Team = props => {
-  const { teamId } = props.router.query
+const Team = () => {
+  const router = useRouter()
+  const { teamId } = router.query
 
   return (
     <DynamicAuth>
@@ -21,7 +22,7 @@ const Team = props => {
           sidebarLeftComponent={null}
           showSidebarRight={true}
           sidebarRightComponent={<TeamSidebar />}>
-          <div className={style.pageContent}>
+          <div className={singleStyle.pageContent}>
             <Notification type="warning">
               {PRE_ALPHA_NOTIFICATION_TEXT}
             </Notification>

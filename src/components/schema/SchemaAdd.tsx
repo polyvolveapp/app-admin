@@ -11,7 +11,7 @@ import {
   singleStyle,
   componentStyle,
 } from "../../lib/reexports"
-import * as schemaStyle from "../../style/schema.scss"
+import * as schemaStyle from "../../style/schema.module.scss"
 import * as helpIcon from "../../assets/icons/help.svg"
 
 interface Props {

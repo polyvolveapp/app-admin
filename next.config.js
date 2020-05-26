@@ -1,6 +1,4 @@
-const withTypescript = require("@zeit/next-typescript")
-const withCSS = require("@zeit/next-sass")
-const withTM = require("next-transpile-modules")
+const withTM = require("next-transpile-modules")(["polyvolve-ui"])
 const withPlugins = require("next-compose-plugins")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 const path = require("path")
@@ -11,24 +9,7 @@ if (typeof require !== "undefined") {
 }
 
 module.exports = withPlugins(
-  [
-    [
-      withTM,
-      {
-        transpileModules: ["polyvolve-ui"],
-      },
-    ],
-    withTypescript,
-    [
-      withCSS,
-      {
-        sassLoaderOptions: {
-          includePaths: ["src/style", "node_modules"],
-        },
-        cssModules: true,
-      },
-    ],
-  ],
+  [withTM],
   {
     webpack(config) {
       if (process.env.ANALYZE) {
@@ -55,7 +36,14 @@ module.exports = withPlugins(
 
       return config
     },
+    sassOptions: {
+      includePaths: [
+        path.join(__dirname, "src", "style"),
+        path.join(__dirname, "node_modules", "polyvolve-ui", "src", "style"),
+      ],
+    },
   },
+
   {
     onDemandEntries: {
       // period (in ms) where the server will keep pages in the buffer

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ReviewMaster } from "polyvolve-ui/lib/@types"
 
-import * as singleStyle from "../../../style/single.scss"
+import * as singleStyle from "../../../style/single.module.scss"
 import Link from "next/link"
 
 

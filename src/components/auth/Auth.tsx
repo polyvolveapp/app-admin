@@ -9,17 +9,25 @@ import { RootState } from "../../redux"
 import { WithRouterProps } from "next/dist/client/with-router"
 
 interface Props extends WithRouterProps {
-  authenticated: boolean
-  loading: boolean
+  authenticated?: boolean
+  loading?: boolean
   mail?: string
-  adminInitialized: boolean
-  authInitialized: boolean
+  adminInitialized?: boolean
+  authInitialized?: boolean
   error?: string
   adminActions?: typeof AdminActions
   authActions?: typeof AuthActions
 }
 
 class Auth extends React.Component<Props, {}> {
+  static defaultProps = {
+    authenticated: false,
+    loading: true,
+    error: "",
+    adminInitialized: false,
+    authInitialized: false,
+  }
+
   componentDidMount() {
     const {
       authenticated,

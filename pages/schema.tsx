@@ -1,7 +1,7 @@
 import * as React from "react"
 import UI from "../src/components/ui"
 
-import * as style from "../src/style/single.scss"
+import * as singleStyle from "../src/style/single.module.scss"
 import SchemaEditor from "../src/components/schema/SchemaEditor"
 import { withRouter } from "next/router"
 import { DataLoader } from "../src/components/utils"
@@ -19,7 +19,7 @@ const Schema = () => {
           sidebarLeftComponent={null}
           showSidebarRight={true}
           sidebarRightComponent={<SchemaSidebar />}>
-          <div className={style.pageContent}>
+          <div className={singleStyle.pageContent}>
             <Notification type="warning">
               {PRE_ALPHA_NOTIFICATION_TEXT}
             </Notification>
