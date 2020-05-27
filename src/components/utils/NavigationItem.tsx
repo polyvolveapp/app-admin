@@ -6,12 +6,11 @@ interface Props {
   icon?: any
   index?: boolean
   className?: string
-  link?: any
   onClick?: () => void
 }
 
 const NavigationItem: React.FunctionComponent<Props> = props => (
-  <DefaultNavigationItem {...props} url={props.link} />
+  <DefaultNavigationItem {...props} url={props.url} />
 )
 
 export default NavigationItem

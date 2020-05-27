@@ -1,11 +1,5 @@
 @import "vars.scss";
 
-:global {
-	.body-auth {
-		background-color: $bg-content-diff;
-	}
-}
-
 .authForm {
 	margin-bottom: 40px;
 	background-color: $bg-content;
@@ -45,7 +39,7 @@
 	}
 	.logo {
 		margin: 0 auto;
-		fill: $logo;
+		justify-content: center;
 	}
 	p,
 	label,
@@ -71,10 +65,4 @@
 
 .registeredMsg {
 	margin-bottom: 8px;
-}
-
-:global {
-	.sk-circle {
-		margin: 0 auto;
-	}
 }

@@ -1,11 +1,8 @@
 import * as React from "react"
-
-import * as style from "../../../style/sidebar.scss"
+import { sidebarStyle } from "../../../lib/reexports"
 
 const SidebarSection: React.FC = props => (
-  <div className={style.sidebarSection}>
-    {props.children}
-  </div>
+  <div className={sidebarStyle.sidebarSection}>{props.children}</div>
 )
 
 export default SidebarSection

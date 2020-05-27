@@ -94,7 +94,7 @@ export function* handleLoadReviewMasters() {
   while (true) {
     yield take(actions.loadReviewMastersRequest)
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/review/master/all`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -103,13 +103,13 @@ export function* handleLoadReviewMasters() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.loadReviewMastersResponse({ error: getErrorMessage(err) }))
       continue
     }
 
 
-    const reviewMasters = res.data.data.map(reviewMasterOriginal => transformReviewMaster(reviewMasterOriginal))
+    const reviewMasters = ok.data.data.map(reviewMasterOriginal => transformReviewMaster(reviewMasterOriginal))
 
     yield put(actions.loadReviewMastersResponse({ error: "", all: reviewMasters }))
   }

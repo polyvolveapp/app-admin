@@ -1,6 +1,5 @@
 import * as React from "react"
-
-import * as style from "../../../style/sidebar.scss"
+import { sidebarStyle } from "../../../lib/reexports"
 
 interface Props {
   title: string
@@ -8,7 +7,7 @@ interface Props {
 
 const SidebarSectionTitle: React.FC<Props> = props => (
   <div>
-    <h2 className={style.sidebarSectionTitle}>{props.title}</h2>
+    <h2 className={sidebarStyle.sidebarSectionTitle}>{props.title}</h2>
   </div>
 )
 

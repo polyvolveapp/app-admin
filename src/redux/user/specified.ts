@@ -117,7 +117,7 @@ export function* handleGetUser() {
     const action = yield take(actions.getUserRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.get(`${API_URL}/user/get/${id}`, {
           withCredentials: true,
@@ -126,13 +126,13 @@ export function* handleGetUser() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (err || ok.status != 200) {
       yield put(actions.getUserResponse({ error: getErrorMessage(err) }))
 
       continue
     }
 
-    const data = res.data.data
+    const data = ok.data.data
     const user: User = data.user
     user.reviewMasters = data.reviewMasters
     user.reviews = data.reviews
@@ -150,7 +150,7 @@ export function* handleUpdateUser() {
 
     yield put(NotificationMessageActions.info(`Updating user ${userName}...`))
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect(
         axios.post(
           `${API_URL}/user/update`,
@@ -163,7 +163,7 @@ export function* handleUpdateUser() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (err || ok.status != 200) {
       yield put(actions.updateUserResponse({ error: getErrorMessage(err) }))
       yield put(
         NotificationMessageActions.info(`Unable to update user ${userName}.`)
@@ -171,7 +171,7 @@ export function* handleUpdateUser() {
       continue
     }
 
-    const data = res.data.data
+    const data = ok.data.data
     const user: User = data.user
     user.reviewMasters = data.reviewMasters
     user.reviews = data.reviews
@@ -188,7 +188,7 @@ export function* handleGetScores() {
     const action = yield take(actions.getScoresRequest)
     const id: string = action.payload.id
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.get(`${API_URL}/user/scores/${id}`, {
           withCredentials: true,
@@ -197,13 +197,13 @@ export function* handleGetScores() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (err || ok.status != 200) {
       yield put(actions.getScoresResponse({ error: getErrorMessage(err) }))
 
       continue
     }
 
-    const scores: ScoreContainer = res.data.data
+    const scores: ScoreContainer = ok.data.data
 
     yield put(actions.getScoresResponse({ error: "", scores }))
   }

@@ -75,7 +75,7 @@ export function* handleCreateUser() {
 
     yield put(NotificationMessageActions.info(`Creating user ${userName}...`))
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.post(
           `${API_URL}/user/create`,
@@ -98,7 +98,7 @@ export function* handleCreateUser() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.addUserResponse({ error: getErrorMessage(err) }))
       yield put(
         NotificationMessageActions.info(`Unable to create user ${userName}.`)

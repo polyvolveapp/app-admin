@@ -8,7 +8,6 @@ import { NotificationMessageActions } from "../message";
 
 import { ReviewSchema, ReviewCategory, ReviewCriterion } from "polyvolve-ui/lib/@types"
 import { sortByOrder } from "polyvolve-ui/lib/utils/sort"
-export { ReviewSchema, ReviewCategory, ReviewCriterion }
 
 export interface SchemaEditorState {
   error: string
@@ -396,7 +395,7 @@ export function* handleGetSchemas() {
   while (true) {
     yield take(actions.getSchemasRequest)
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/review/schema/all`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -405,13 +404,13 @@ export function* handleGetSchemas() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.getSchemasResponse({ error: getErrorMessage(err) }))
       continue
     }
 
 
-    const reviewSchemas = res.data.data
+    const reviewSchemas = ok.data.data
 
     yield put(actions.getSchemasResponse({ error: "", schemas: reviewSchemas }))
   }
@@ -422,7 +421,7 @@ export function* handleCreateSchema() {
     const action = yield take(actions.createSchemaRequest)
     const { name, description } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/create`, { name, description },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -432,7 +431,7 @@ export function* handleCreateSchema() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.createSchemaResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -447,7 +446,7 @@ export function* handleUpdateSchema() {
     const action = yield take(actions.updateSchemaRequest)
     const { schema, name, description } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/update`, { id: schema.id, name, description },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -457,7 +456,7 @@ export function* handleUpdateSchema() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.updateSchemaResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -472,7 +471,7 @@ export function* handleRemoveSchema() {
     const action = yield take(actions.removeSchemaRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/review/schema/delete/${id}`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -484,7 +483,7 @@ export function* handleRemoveSchema() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.removeSchemaResponse({ error: getErrorMessage(err) }))
       yield put(NotificationMessageActions.error("Unable to remove schema."))
       continue
@@ -501,7 +500,7 @@ export function* handleGetCategories() {
     const action = yield take(actions.getCategoriesRequest)
     const { schema } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/review/schema/category/all/${schema.id}`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -510,13 +509,13 @@ export function* handleGetCategories() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.getCategoriesResponse({ error: getErrorMessage(err) }))
       continue
     }
 
 
-    const reviewCategories = res.data.data
+    const reviewCategories = ok.data.data
 
     reviewCategories.sort(sortByOrder)
     reviewCategories.forEach(category => {
@@ -532,7 +531,7 @@ export function* handleCreateCategory() {
     const action = yield take(actions.createCategoryRequest)
     const { name, description, schema } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/category/create`, { name, description, schemaId: schema.id },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -542,7 +541,7 @@ export function* handleCreateCategory() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.createCategoryResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -557,7 +556,7 @@ export function* handleUpdateCategory() {
     const action = yield take(actions.updateCategoryRequest)
     const { category, name, description } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/category/update`, { id: category.id, name, description },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -567,13 +566,13 @@ export function* handleUpdateCategory() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.updateCategoryResponse({ error: getErrorMessage(err) }))
 
       continue
     }
 
-    const newData: ReviewCategory = res.data.data
+    const newData: ReviewCategory = ok.data.data
 
     yield put(actions.updateCategoryResponse({ error: "", newData }))
   }
@@ -584,7 +583,7 @@ export function* handleRemoveCategory() {
     const action = yield take(actions.removeCategoryRequest)
     const { category } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/review/schema/category/delete/${category.id}`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -596,7 +595,7 @@ export function* handleRemoveCategory() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.removeCategoryResponse({ error: getErrorMessage(err) }))
       yield put(NotificationMessageActions.error("Unable to remove category."))
       continue
@@ -613,7 +612,7 @@ export function* handleCreateCriterion() {
     const { name, description, type } = action.payload
     const category: ReviewCategory = action.payload.category
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/criterion/create`,
         { categoryId: category.id, name, description, type },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
@@ -624,7 +623,7 @@ export function* handleCreateCriterion() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.createCriterionResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -639,7 +638,7 @@ export function* handleUpdateCriterion() {
     const action = yield take(actions.updateCriterionRequest)
     const { criterion, name, description, type } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/criterion/update`, { id: criterion.id, name, description, type },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -649,13 +648,13 @@ export function* handleUpdateCriterion() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.updateCriterionResponse({ error: getErrorMessage(err) }))
 
       continue
     }
 
-    const newData: ReviewCriterion = res.data.data
+    const newData: ReviewCriterion = ok.data.data
 
     yield put(actions.updateCriterionResponse({ error: "", newData }))
   }
@@ -666,7 +665,7 @@ export function* handleRemoveCriterion() {
     const action = yield take(actions.removeCriterionRequest)
     const { category, id } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/review/schema/criterion/delete/${id}`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -676,7 +675,7 @@ export function* handleRemoveCriterion() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.removeCriterionResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -691,7 +690,7 @@ export function* handleSetOrderCriterion() {
     const action = yield take(actions.setOrderCriterionRequest)
     const { category, criterion, order } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/criterion/order/set`, { categoryId: category.id, criterionId: criterion.id, order },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -701,7 +700,7 @@ export function* handleSetOrderCriterion() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.setOrderCriterionResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -716,7 +715,7 @@ export function* handleSetOrderCategory() {
     const action = yield take(actions.setOrderCategoryRequest)
     const { category, schema, order } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/review/schema/category/order/set`, { categoryId: category.id, schemaId: schema.id, order },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -726,7 +725,7 @@ export function* handleSetOrderCategory() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.setOrderCategoryResponse({ error: getErrorMessage(err) }))
 
       continue

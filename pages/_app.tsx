@@ -5,6 +5,7 @@ import App from "next/app"
 import { getStore } from "../src/store"
 
 import "../src/style/vars.scss"
+import "../src/style/button.scss"
 import * as style from "../src/style/style.scss"
 import * as componentStyle from "../src/style/component.scss"
 import "polyvolve-ui/style/style.scss"

@@ -93,7 +93,7 @@ export function* handleGetTeam() {
     const action = yield take(actions.getTeamRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.get(`${API_URL}/team/get/${id}`, {
           withCredentials: true,
@@ -102,13 +102,13 @@ export function* handleGetTeam() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (err || ok.status != 200) {
       yield put(actions.getTeamResponse({ error: getErrorMessage(err) }))
 
       continue
     }
 
-    const data = res.data.data
+    const data = ok.data.data
     const team: Team = data.team
     team.users = data.users
     team.reviewMasters = data.reviewMasters
@@ -123,7 +123,7 @@ export function* handleUpdateTeam() {
     const { id, name, description, userIds } = action.payload
     yield put(NotificationMessageActions.info(`Updating Team ${name}...`))
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect(
         axios.post(
           `${API_URL}/team/update`,
@@ -136,7 +136,7 @@ export function* handleUpdateTeam() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (err || ok.status != 200) {
       yield put(actions.updateTeamResponse({ error: getErrorMessage(err) }))
       yield put(
         NotificationMessageActions.info(`Unable to update Team ${name}.`)
@@ -144,7 +144,7 @@ export function* handleUpdateTeam() {
       continue
     }
 
-    const data = res.data.data
+    const data = ok.data.data
     const team: Team = data.team
     team.users = data.users
     team.reviewMasters = data.reviewMasters

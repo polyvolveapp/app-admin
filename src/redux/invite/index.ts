@@ -63,7 +63,7 @@ export function* handleAcceptInvite() {
     const action = yield take(actions.acceptInviteRequest)
     const { mail, id, password, name, surname } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/login`,
         { mail, id, name, surname, password },
         { withCredentials: true })))
@@ -73,7 +73,7 @@ export function* handleAcceptInvite() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.acceptInviteResponse({ error: getErrorMessage(err) }))
       continue
     }

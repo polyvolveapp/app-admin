@@ -10,11 +10,7 @@ import {
 import { API_URL } from "../../constants/env"
 import { lazyProtect } from "await-protect"
 import { Team } from "polyvolve-ui/lib/@types"
-import {
-  sortByOrder,
-  sortByName,
-  sortBySurname,
-} from "polyvolve-ui/lib/utils/sort"
+import { sortBySurname } from "polyvolve-ui/lib/utils/sort"
 
 export interface TeamOverviewState {
   initialized: boolean
@@ -98,7 +94,7 @@ export function* handleLoadTeamData() {
   while (true) {
     yield take(actions.loadTeamsRequest)
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.get(`${API_URL}/team/all`, {
           withCredentials: true,
@@ -113,13 +109,13 @@ export function* handleLoadTeamData() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.loadTeamsResponse({ error: getErrorMessage(err) }))
 
       continue
     }
 
-    const all: Team[] = res.data.data
+    const all: Team[] = ok.data.data
     all.forEach(team => {
       if (team.users) {
         team.users.sort(sortBySurname)
@@ -135,7 +131,7 @@ export function* handleRemoveTeam() {
     const action = yield take(actions.removeTeamRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.post(
           `${API_URL}/team/delete`,
@@ -154,7 +150,7 @@ export function* handleRemoveTeam() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.removeTeamResponse({ error: getErrorMessage(err) }))
 
       continue

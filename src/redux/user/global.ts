@@ -146,7 +146,7 @@ export function* handleLoadUsers() {
   while (true) {
     yield take(actions.loadUsersRequest)
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/user/all`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -156,13 +156,13 @@ export function* handleLoadUsers() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.loadUsersResponse({ error: getErrorMessage(err) }))
 
       continue
     }
 
-    const all: User[] = res.data.data
+    const all: User[] = ok.data.data
 
     yield put(actions.loadUsersResponse({ error: "", all }))
   }
@@ -173,7 +173,7 @@ export function* handleRemoveUser() {
     const action = yield take(actions.removeUserRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/user/delete`, { id },
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -183,7 +183,7 @@ export function* handleRemoveUser() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.removeUserResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -197,7 +197,7 @@ export function* handleGetMarkedUsers() {
   while (true) {
     yield take(actions.loadMarkedUsersRequest)
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/user/mark/all`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -206,12 +206,12 @@ export function* handleGetMarkedUsers() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.loadMarkedUsersResponse({ error: getErrorMessage(err) }))
       continue
     }
 
-    const all: MarkedUser[] = res.data.data
+    const all: MarkedUser[] = ok.data.data
 
     yield put(actions.loadMarkedUsersResponse({ markedLeaders: all }))
   }
@@ -222,7 +222,7 @@ export function* handleMarkUser() {
     const action = yield take(actions.markUserRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/user/mark/add/${id}`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -232,7 +232,7 @@ export function* handleMarkUser() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.markUserResponse({ error: getErrorMessage(err) }))
 
       continue
@@ -247,7 +247,7 @@ export function* handleUnmarkUser() {
     const action = yield take(actions.removeUserRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const { ok, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.get(`${API_URL}/user/mark/remove/${id}`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -257,7 +257,7 @@ export function* handleUnmarkUser() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.removeUserResponse({ error: getErrorMessage(err) }))
 
       continue

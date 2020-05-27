@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import * as messageStyle from "../../../style/message.scss"
+import * as messageStyle from "../../../style/message.module.scss"
 import { cx } from "../../../lib/reexports"
 import { NotificationMessage } from "../../../redux/message"
 

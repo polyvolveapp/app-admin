@@ -1,6 +1,6 @@
 import * as React from "react"
-import { componentStyle } from "../../lib/reexports";
-import { Line } from "polyvolve-ui/lib";
+import { Line } from "polyvolve-ui/lib"
+import { sortableOverviewStyle } from "../../lib/reexports"
 
 interface SortableOverviewItem {
   id: string
@@ -21,16 +21,20 @@ interface State {
   filterValues: { [filterName: string]: string }
 }
 
-export default class SortableOverview<Item extends SortableOverviewItem> extends React.Component<Props<Item>, State> {
+export default class SortableOverview<
+  Item extends SortableOverviewItem
+> extends React.Component<Props<Item>, State> {
   constructor(props: Props<Item>) {
     super(props)
 
     this.state = {
-      filterValues: {}
+      filterValues: {},
     }
   }
 
-  handleFilterChange = (filter: SortableOverviewFilter<Item>): ((event: React.ChangeEvent<HTMLInputElement>) => void) => {
+  handleFilterChange = (
+    filter: SortableOverviewFilter<Item>
+  ): ((event: React.ChangeEvent<HTMLInputElement>) => void) => {
     return event => {
       const newFilterValues = { ...this.state.filterValues }
 
@@ -44,26 +48,35 @@ export default class SortableOverview<Item extends SortableOverviewItem> extends
     const { items, renderItem, filters } = this.props
 
     return (
-      <div className={componentStyle.sortableOverviewContainer}>
-        <div className={componentStyle.sortableOverviewFilterContainerWrapper}>
-        <h4>Filters</h4>
-        <div className={componentStyle.sortableOverviewFilterContainer}>
-          {filters.map(filter => (
-            <div key={`sortableOverviewFilter-${filter.name}`} className={componentStyle.sortableOverviewFilter}>
-              <label>{filter.name}</label>
-              <input
-                name="mail"
-                type="email"
-                onChange={this.handleFilterChange(filter)}
-                value={this.state.filterValues[filter.name] || ""} />
-            </div>
-          ))}
+      <div className={sortableOverviewStyle.sortableOverviewContainer}>
+        <div
+          className={
+            sortableOverviewStyle.sortableOverviewFilterContainerWrapper
+          }>
+          <h4>Filters</h4>
+          <div
+            className={sortableOverviewStyle.sortableOverviewFilterContainer}>
+            {filters.map(filter => (
+              <div
+                key={`sortableOverviewFilter-${filter.name}`}
+                className={sortableOverviewStyle.sortableOverviewFilter}>
+                <label>{filter.name}</label>
+                <input
+                  name="mail"
+                  type="email"
+                  onChange={this.handleFilterChange(filter)}
+                  value={this.state.filterValues[filter.name] || ""}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        </div>
-        <Line className={componentStyle.sortableOverviewLine} />
-        <div className={componentStyle.sortableOverviewItemContainer}>
+        <Line className={sortableOverviewStyle.sortableOverviewLine} />
+        <div className={sortableOverviewStyle.sortableOverviewItemContainer}>
           {items.map(item => (
-            <div key={`sortableOverviewItem-${item.id}`} className={componentStyle.sortableOverviewItem}>
+            <div
+              key={`sortableOverviewItem-${item.id}`}
+              className={sortableOverviewStyle.sortableOverviewItem}>
               {renderItem(item)}
             </div>
           ))}

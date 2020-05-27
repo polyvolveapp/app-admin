@@ -5,7 +5,7 @@ import {
   Logo,
 } from "polyvolve-ui/lib"
 
-import * as footerStyle from "../../style/footer.scss"
+import { footerStyle } from "../../lib/reexports"
 import { SITE_NAME } from "../../constants/env"
 
 interface Props {

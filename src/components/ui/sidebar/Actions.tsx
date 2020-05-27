@@ -1,7 +1,6 @@
 import * as React from "react"
 import { SidebarSection } from ".";
 import SidebarSectionTitle from "./SidebarSectionTitle";
-import * as style from "../../../style/sidebar.scss"
 
 const Actions: React.FC = props => (
   <React.Fragment>

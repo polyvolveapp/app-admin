@@ -172,44 +172,10 @@
   }
 }
 
-.sortableOverviewContainer {
-  background-color: $bg-content;
-  padding: 0.8rem;
-  border-radius: $border-rounded-standard;
+.body-auth {
+	background-color: $bg-content-diff;
 }
 
-.sortableOverviewLine {
-  margin: 0.4rem 0;
-}
-
-.sortableOverviewFilterContainer {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
-
-.sortableOverviewFilter {
-  label {
-    margin-right: 0.8rem;
-  }
-
-  input {
-    width: 120px;
-  }
-}
-
-.sortableOverviewItem {
-  &:not(:last-child) {
-    margin-bottom: 0.6rem;
-  }
-}
-
-.sortableOverviewFilterContainerWrapper {
-  display: grid;
-  grid-template-columns: max-content auto;
-  grid-gap: 4rem;
-  align-items: center;
-}
-
-.searchInput {
-  width: 140px;
+.sk-circle {
+	margin: 0 auto;
 }

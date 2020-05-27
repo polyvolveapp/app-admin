@@ -1,5 +1,5 @@
-import * as moment from "moment"
-import { ReviewMaster } from "..";
+import moment from "moment"
+import { ReviewMaster } from "polyvolve-ui/lib/@types"
 
 export function transformReviewMaster(data: any): ReviewMaster {
   const newData: ReviewMaster = {

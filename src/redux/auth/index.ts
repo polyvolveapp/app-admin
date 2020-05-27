@@ -93,24 +93,18 @@ export function* handleLogin() {
   while (true) {
     const action = yield take(actions.loginRequest)
 
-    const { res, err } = yield call(lazyProtect<AxiosResponse, AxiosError>(
+    const res = yield call(lazyProtect<AxiosResponse, AxiosError>(
       axios.post(`${API_URL}/login`,
         { mail: action.payload.mail, password: action.payload.password },
         { withCredentials: true })))
 
-    if (err) {
-      yield put(actions.loginResponse({ error: getErrorMessage(err) }))
+    if (res.err) {
+      yield put(actions.loginResponse({ error: getErrorMessage(res.err) }))
 
       continue
     }
 
-    if (res.status != 200) {
-      yield put(actions.loginResponse({ error: getErrorMessage(err) }))
-
-      continue
-    }
-
-    const token = (res as AxiosResponse).headers["authorization"].split(" ")[1]
+    const token = (res.ok as AxiosResponse).headers["authorization"].split(" ")[1]
     if (!token) {
       yield put(actions.loginResponse({ error: "Unable to retrieve token." }))
 

@@ -89,7 +89,7 @@ export function* handleCreateReviewMaster() {
 
     yield put(NotificationMessageActions.info(`Creating Review Master ${name}.`))
     
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect(
         axios.post(`${API_URL}/review/master/create`, newReviewMasterBody, {
           withCredentials: true,
@@ -98,7 +98,7 @@ export function* handleCreateReviewMaster() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (err || ok.status != 200) {
       yield put(
         actions.createReviewMasterResponse({ error: getErrorMessage(err) })
       )

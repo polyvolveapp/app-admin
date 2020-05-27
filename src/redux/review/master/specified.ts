@@ -119,7 +119,7 @@ export function* handleGetReviewMaster() {
     const action = yield take(actions.getReviewMasterRequest)
     const { id } = action.payload
 
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.get(`${API_URL}/review/master/get/${id}`, {
           withCredentials: true,
@@ -128,7 +128,7 @@ export function* handleGetReviewMaster() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (err || ok.status != 200) {
       yield put(
         actions.getReviewMasterResponse({ error: getErrorMessage(err) })
       )
@@ -136,7 +136,7 @@ export function* handleGetReviewMaster() {
       continue
     }
 
-    const data = res.data.data
+    const data = ok.data.data
     const reviewMaster: ReviewMaster = transformReviewMaster(data.reviewMaster)
     reviewMaster.reviewedUsers = data.reviewedUsers
     reviewMaster.reviews = data.reviews

@@ -75,7 +75,7 @@ export function* handleLoadRecentlyViewed() {
   while (true) {
     yield take(actions.loadRecentlyViewedRequest)
 
-    const { res, err } = yield call(lazyProtect(
+    const { ok, err } = yield call(lazyProtect(
       axios.get(`${API_URL}/recentlyviewed/all`,
         { withCredentials: true, headers: { ...authenticatedHeader(), ...defaultHeaders } })))
 
@@ -84,12 +84,12 @@ export function* handleLoadRecentlyViewed() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.loadRecentlyViewedResponse({ error: getErrorMessage(err), all: [] }))
       continue
     }
 
-    const all = res.data.data
+    const all = ok.data.data
 
     yield put(actions.loadRecentlyViewedResponse({ error: "", all }))
   }

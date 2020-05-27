@@ -70,7 +70,7 @@ export function* handleCreateTeam() {
     const { name, description } = action.payload
 
     yield put(NotificationMessageActions.info(`Creating Team ${name}...`))
-    const { res, err } = yield call(
+    const { ok, err } = yield call(
       lazyProtect<AxiosResponse, AxiosError>(
         axios.post(
           `${API_URL}/team/create`,
@@ -89,7 +89,7 @@ export function* handleCreateTeam() {
       continue
     }
 
-    if (res.status != 200) {
+    if (ok.status != 200) {
       yield put(actions.createTeamResponse({ error: getErrorMessage(err) }))
       yield put(
         NotificationMessageActions.info(`Unable to create Team ${name}.`)

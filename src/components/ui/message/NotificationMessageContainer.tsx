@@ -6,7 +6,7 @@ import {
 import { RootState } from "../../../redux"
 import { Dispatch, bindActionCreators } from "redux"
 
-import * as messageStyle from "../../../style/message.scss"
+import * as messageStyle from "../../../style/message.module.scss"
 import NotificationMessageItem from "./NotificationMessageItem"
 import { connect } from "react-redux"
 

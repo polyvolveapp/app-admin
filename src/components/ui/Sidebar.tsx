@@ -1,8 +1,7 @@
 import * as React from "react"
 import cx from "classnames"
+import { sidebarStyle } from "../../lib/reexports"
 
-
-import * as sidebarStyle from "../../style/sidebar.scss"
 
 interface Props {
   position: "right" | "left"

@@ -2,11 +2,14 @@ import cx from "classnames"
 import Select from "react-select"
 import * as modalStyle from "../style/modal.module.scss"
 import * as singleStyle from "../style/single.module.scss"
+import * as sidebarStyle from "../style/sidebar.module.scss"
 import * as formStyle from "../style/form.module.scss"
+import * as footerStyle from "../style/footer.module.scss"
 import * as schemaStyle from "../style/schema.module.scss"
 import * as overviewStyle from "../style/overview/overview.module.scss"
 import * as reviewMasterOverviewStyle from "../style/overview/reviewmaster.module.scss"
 import * as dashboardStyle from "../style/dashboard.module.scss"
+import * as sortableOverviewStyle from "../style/sortableoverview.module.scss"
 import { componentStyle, style } from "../../pages/_app"
 
 /**
@@ -22,8 +25,11 @@ export {
   singleStyle,
   Select,
   style,
+  footerStyle,
   componentStyle,
   overviewStyle,
   dashboardStyle,
-  reviewMasterOverviewStyle
+  sortableOverviewStyle,
+  reviewMasterOverviewStyle,
+  sidebarStyle
 }
