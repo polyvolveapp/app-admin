@@ -1,4 +1,4 @@
-import * as moment from "moment"
+import moment from "moment"
 
 import { DEFAULT_DUE_DATE_ADDITION } from "../constants/env";
 import { IntervalType } from "polyvolve-ui/lib/@types";

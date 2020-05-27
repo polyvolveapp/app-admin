@@ -1,7 +1,7 @@
 import * as React from "react"
 import UI from "../../src/components/ui"
 
-import * as singleStyle from "../src/style/single.module.scss"
+import * as singleStyle from "../../src/style/single.module.scss"
 import TeamView from "../../src/components/team/view/TeamView"
 import { withRouter, useRouter } from "next/router"
 import { DataLoader } from "../../src/components/utils"

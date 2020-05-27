@@ -13,7 +13,7 @@ import {
   LightFooter,
   Error,
 } from "polyvolve-ui/lib"
-import * as registerStyle from "../src/style/auth.module.scss"
+import * as registerStyle from "../../src/style/auth.module.scss"
 import { withRouter } from "next/router"
 import { SITE_NAME } from "../../src/constants/env"
 import { RootState } from "../../src/redux"

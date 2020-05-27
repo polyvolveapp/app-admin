@@ -5,20 +5,26 @@ import { connect } from "react-redux"
 import { RootState } from "../../redux"
 
 import {
-  ReviewCategory,
   SchemaActions,
   SchemaAddCategoryState,
   SchemaAddCriterionState,
   SchemaUpdateCriterionState,
   SchemaUpdateCategoryState,
-  ReviewSchema,
-  SchemaAddState
-} from "../../redux/schema";
-import { Button, Load, Error, DropdownSelectMenu } from "polyvolve-ui/lib";
-import SchemaAddCategory from "./SchemaAddCategory";
-import SchemaCategory from "./SchemaCategory";
-import { formStyle, style, cx, Select, componentStyle, schemaStyle } from "../../lib/reexports";
-import SchemaAdd from "./SchemaAdd";
+  SchemaAddState,
+} from "../../redux/schema"
+import { Button, Load, Error } from "polyvolve-ui/lib"
+import SchemaAddCategory from "./SchemaAddCategory"
+import SchemaCategory from "./SchemaCategory"
+import {
+  formStyle,
+  style,
+  cx,
+  Select,
+  componentStyle,
+  schemaStyle,
+} from "../../lib/reexports"
+import SchemaAdd from "./SchemaAdd"
+import { ReviewCategory, ReviewSchema } from "polyvolve-ui/lib/@types"
 
 interface Props {
   loading: boolean
@@ -58,16 +64,29 @@ class SchemaEditor extends React.Component<Props, State> {
   componentDidUpdate(oldProps: Props) {
     const newProps = this.props
     if (oldProps.schemas.length === 0 && newProps.schemas.length > 0) {
-      this.setState({ activeSchema: newProps.schemas[0] },
-        () => this.props.schemaActions.getCategoriesRequest({ schema: newProps.schemas[0] }))
+      this.setState({ activeSchema: newProps.schemas[0] }, () =>
+        this.props.schemaActions.getCategoriesRequest({
+          schema: newProps.schemas[0],
+        })
+      )
     }
 
     if (!oldProps.schemasInitialized && newProps.schemasInitialized) {
-      if (this.state.activeSchema && newProps.schemas.findIndex(schema => schema.id === this.state.activeSchema.id) !== -1) {
-        this.props.schemaActions.getCategoriesRequest({ schema: this.state.activeSchema })
+      if (
+        this.state.activeSchema &&
+        newProps.schemas.findIndex(
+          schema => schema.id === this.state.activeSchema.id
+        ) !== -1
+      ) {
+        this.props.schemaActions.getCategoriesRequest({
+          schema: this.state.activeSchema,
+        })
       } else {
-        this.setState({ activeSchema: newProps.schemas[0] },
-          () => this.props.schemaActions.getCategoriesRequest({ schema: newProps.schemas[0] }))
+        this.setState({ activeSchema: newProps.schemas[0] }, () =>
+          this.props.schemaActions.getCategoriesRequest({
+            schema: newProps.schemas[0],
+          })
+        )
       }
       // check on difference whether activeSchema from before is still available
       // retriev new schemas on adding shcema
@@ -78,9 +97,15 @@ class SchemaEditor extends React.Component<Props, State> {
     }
 
     if (this.state.activeSchema) {
-      if ((!oldProps.addCategory.initialized && newProps.addCategory.initialized) ||
-        (!oldProps.addCriterion.initialized && newProps.addCriterion.initialized)) {
-        this.props.schemaActions.getCategoriesRequest({ schema: this.state.activeSchema })
+      if (
+        (!oldProps.addCategory.initialized &&
+          newProps.addCategory.initialized) ||
+        (!oldProps.addCriterion.initialized &&
+          newProps.addCriterion.initialized)
+      ) {
+        this.props.schemaActions.getCategoriesRequest({
+          schema: this.state.activeSchema,
+        })
       }
     }
   }
@@ -91,9 +116,12 @@ class SchemaEditor extends React.Component<Props, State> {
   openAddCategory = () => this.setState({ addingCategory: true })
   onAddCategory = () => this.setState({ addingCategory: false })
 
-  setActiveSchema = (schemaWrapper: { value: ReviewSchema, label: string }) =>
-    this.setState({ activeSchema: schemaWrapper.value },
-      () => this.props.schemaActions.getCategoriesRequest({ schema: schemaWrapper.value }))
+  setActiveSchema = (schemaWrapper: { value: ReviewSchema; label: string }) =>
+    this.setState({ activeSchema: schemaWrapper.value }, () =>
+      this.props.schemaActions.getCategoriesRequest({
+        schema: schemaWrapper.value,
+      })
+    )
 
   render(): JSX.Element {
     const {
@@ -111,7 +139,9 @@ class SchemaEditor extends React.Component<Props, State> {
     } = this.props
     const { addingCategory, addingSchema, activeSchema } = this.state
 
-    const currentSelectValue = activeSchema ? { value: activeSchema, label: activeSchema.name } : null
+    const currentSelectValue = activeSchema
+      ? { value: activeSchema, label: activeSchema.name }
+      : null
 
     return (
       <React.Fragment>
@@ -119,62 +149,85 @@ class SchemaEditor extends React.Component<Props, State> {
           <Select
             className={cx(componentStyle.select, schemaStyle.selectSchema)}
             classNamePrefix="pv"
-            options={schemas.map(schema => ({ value: schema, label: schema.name }))}
+            options={schemas.map(schema => ({
+              value: schema,
+              label: schema.name,
+            }))}
             value={currentSelectValue}
-            onChange={this.setActiveSchema} />
+            onChange={this.setActiveSchema}
+          />
           <Button
             type="button"
             name="add-schema"
             className={schemaStyle.plusButton}
-            onClick={this.openAddSchema}>+</Button>
+            onClick={this.openAddSchema}>
+            +
+          </Button>
         </div>
-        {!loading && addingSchema &&
+        {!loading && addingSchema && (
           <SchemaAdd
             show={addingSchema}
             schemaActions={schemaActions}
-            onSubmit={() => { }}
+            onSubmit={() => {}}
             onClose={this.onAddSchema}
-            {...addSchema} />}
-        {!loading && schemas.length === 0 && <Error className={style.alignCenter}>No schemas found. Perhaps create a new one?</Error>}
-        {!loading && !activeSchema && schemas.length > 0 && <Error className={style.alignCenter}>No schema selected.</Error>}
-        {!loading && activeSchema &&
+            {...addSchema}
+          />
+        )}
+        {!loading && schemas.length === 0 && (
+          <Error className={style.alignCenter}>
+            No schemas found. Perhaps create a new one?
+          </Error>
+        )}
+        {!loading && !activeSchema && schemas.length > 0 && (
+          <Error className={style.alignCenter}>No schema selected.</Error>
+        )}
+        {!loading && activeSchema && (
           <React.Fragment>
-            {categoriesInitialized && <div>
+            {categoriesInitialized && (
               <div>
-                {categories.length === 0 && <p className={cx(style.alignCenter, style.mb1)}>
-                  No schema categories found! Click the + to add a new one.
-                </p>}
-                {categories.map(category =>
-                  <SchemaCategory
-                    schema={activeSchema}
-                    data={category}
-                    schemaActions={schemaActions}
-                    addCriterion={addCriterion}
-                    updateCategory={updateCategory}
-                    updateCriterion={updateCriterion}
-                    key={`category-outer-${category.id}`} />)}
+                <div>
+                  {categories.length === 0 && (
+                    <p className={cx(style.alignCenter, style.mb1)}>
+                      No schema categories found! Click the + to add a new one.
+                    </p>
+                  )}
+                  {categories.map(category => (
+                    <SchemaCategory
+                      schema={activeSchema}
+                      data={category}
+                      schemaActions={schemaActions}
+                      addCriterion={addCriterion}
+                      updateCategory={updateCategory}
+                      updateCriterion={updateCriterion}
+                      key={`category-outer-${category.id}`}
+                    />
+                  ))}
+                </div>
+                <Button
+                  type="button"
+                  name="add-category"
+                  className={formStyle.plusButton}
+                  onClick={this.openAddCategory}>
+                  +
+                </Button>
+                <SchemaAddCategory
+                  show={addingCategory}
+                  schema={activeSchema}
+                  schemaActions={schemaActions}
+                  onSubmit={() => {}}
+                  onClose={this.onAddCategory}
+                  {...addCategory}
+                />
               </div>
-              <Button
-                type="button"
-                name="add-category"
-                className={formStyle.plusButton}
-                onClick={this.openAddCategory}>+</Button>
-              <SchemaAddCategory
-                show={addingCategory}
-                schema={activeSchema}
-                schemaActions={schemaActions}
-                onSubmit={() => { }}
-                onClose={this.onAddCategory}
-                {...addCategory} />
-            </div>}
+            )}
           </React.Fragment>
-        }
-        {
-          loading && <div className={schemaStyle.loadContainer}>
+        )}
+        {loading && (
+          <div className={schemaStyle.loadContainer}>
             <Load />
           </div>
-        }
-      </React.Fragment >
+        )}
+      </React.Fragment>
     )
   }
 }

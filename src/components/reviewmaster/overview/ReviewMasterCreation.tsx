@@ -1,12 +1,12 @@
 import * as React from "react"
-import { Modal, Error } from "polyvolve-ui/lib";
+import { Modal, Error } from "polyvolve-ui/lib"
 import { Formik } from "formik"
 
 import { ReviewMasterCreateActions } from "../../../redux/review/master/creation"
 
-import ReviewMasterCreateForm from "./ReviewMasterCreationForm";
-import { SchemaActions, ReviewSchema } from "../../../redux/schema";
-import { IntervalType } from "polyvolve-ui/lib/@types"
+import ReviewMasterCreateForm from "./ReviewMasterCreationForm"
+import { SchemaActions } from "../../../redux/schema"
+import { IntervalType, ReviewSchema } from "polyvolve-ui/lib/@types"
 import { modalStyle } from "../../../lib/reexports"
 
 interface Props {
@@ -33,7 +33,7 @@ export interface ReviewMasterCreateFormData {
   interval?: number
   intervalType?: IntervalType
   recursFirstOn?: string
-  schema?: { value: string, label: string }
+  schema?: { value: string; label: string }
 }
 
 export interface ReviewMasterCreateFormErrors {
@@ -57,7 +57,9 @@ class ReviewMasterCreation extends React.Component<Props, State> {
   }
 
   // TODO elaborate
-  validate = (values: ReviewMasterCreateFormData): ReviewMasterCreateFormErrors => {
+  validate = (
+    values: ReviewMasterCreateFormData
+  ): ReviewMasterCreateFormErrors => {
     const errors: ReviewMasterCreateFormErrors = {}
 
     if (!values.name) {
@@ -91,11 +93,14 @@ class ReviewMasterCreation extends React.Component<Props, State> {
     return errors
   }
 
-  onSubmit = (values: ReviewMasterCreateFormData, { setSubmitting }: { setSubmitting: (value: boolean) => void }) => {
+  onSubmit = (
+    values: ReviewMasterCreateFormData,
+    { setSubmitting }: { setSubmitting: (value: boolean) => void }
+  ) => {
     this.setState({ submitted: true })
 
     const newValues: any = { ...values }
-    
+
     newValues.schemaId = values.schema.value
     delete newValues.schema
 
@@ -109,13 +114,7 @@ class ReviewMasterCreation extends React.Component<Props, State> {
   }
 
   render(): JSX.Element {
-    const {
-      show,
-      onClose,
-      loading,
-      error,
-      schemas
-    } = this.props
+    const { show, onClose, loading, error, schemas } = this.props
 
     return (
       <Modal
@@ -136,12 +135,16 @@ class ReviewMasterCreation extends React.Component<Props, State> {
           }}
           validate={this.validate}
           onSubmit={this.onSubmit}
-          render={formikProps => <ReviewMasterCreateForm
-            schemas={schemas}
-            error={error}
-            loading={loading}
-            {...formikProps} />} />
-      </Modal >
+          render={formikProps => (
+            <ReviewMasterCreateForm
+              schemas={schemas}
+              error={error}
+              loading={loading}
+              {...formikProps}
+            />
+          )}
+        />
+      </Modal>
     )
   }
 }

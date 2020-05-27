@@ -14,7 +14,12 @@ import ReviewMasterInformationBasicSubsection from "./ReviewMasterInformationBas
 import SubsectionContent from "../../ui/section/SubsectionContent"
 import SectionContent from "../../ui/section/SectionContent"
 import SubsectionEditButton from "../../ui/section/SubsectionEditButton"
-import { IntervalType, ReviewMaster, ReviewMasterContainerType, ReviewMasterType } from "polyvolve-ui/lib/@types"
+import {
+  IntervalType,
+  ReviewMaster,
+  ReviewMasterContainerType,
+  ReviewMasterType,
+} from "polyvolve-ui/lib/@types"
 import { singleStyle } from "../../../lib/reexports"
 
 interface UpdateReviewMasterParams {
@@ -143,7 +148,10 @@ class ReviewMasterInformationSection extends React.Component<Props, State> {
                     items={[
                       { name: "Name:", value: reviewMaster.name },
                       { name: "Description:", value: reviewMaster.description },
-                      { name: "Schema:", value: reviewMaster.schema.name || "Unknown" },
+                      {
+                        name: "Schema:",
+                        value: reviewMaster.schema.name || "Unknown",
+                      },
                       {
                         name: "Is active:",
                         value: reviewMaster.status === "Active" ? "Yes" : "No",
@@ -190,8 +198,14 @@ class ReviewMasterInformationSection extends React.Component<Props, State> {
                             ? "Singular"
                             : "Recurring",
                       },
-                      { name: "Interval:", value: reviewMaster.interval.toString() },
-                      { name: "Interval type:", value: reviewMaster.intervalType },
+                      {
+                        name: "Interval:",
+                        value: reviewMaster.interval.toString(),
+                      },
+                      {
+                        name: "Interval type:",
+                        value: reviewMaster.intervalType,
+                      },
                       {
                         name: "Period start:",
                         value: reviewMaster.periodStart.format("YYYY-MM-DD"),
@@ -216,8 +230,10 @@ class ReviewMasterInformationSection extends React.Component<Props, State> {
                           : "Singular",
                       interval: reviewMaster.interval || 1,
                       intervalType: reviewMaster.intervalType || "Monthly",
-                      periodStart: reviewMaster.periodStart.format("YYYY-MM-DD") || "",
-                      periodEnd: reviewMaster.periodEnd.format("YYYY-MM-DD") || "",
+                      periodStart:
+                        reviewMaster.periodStart.format("YYYY-MM-DD") || "",
+                      periodEnd:
+                        reviewMaster.periodEnd.format("YYYY-MM-DD") || "",
                       dueAt: reviewMaster.dueAt.format("YYYY-MM-DD") || "",
                     }}
                     validate={this.validatePeriod}

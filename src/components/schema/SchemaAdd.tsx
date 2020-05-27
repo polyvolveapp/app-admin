@@ -5,11 +5,7 @@ import { InfoIcon } from "polyvolve-ui/lib/icons"
 import { Error, Button, LoadButton } from "polyvolve-ui/lib"
 import {
   modalStyle,
-  cx,
   formStyle,
-  Select,
-  singleStyle,
-  componentStyle,
 } from "../../lib/reexports"
 import * as schemaStyle from "../../style/schema.module.scss"
 import * as helpIcon from "../../assets/icons/help.svg"

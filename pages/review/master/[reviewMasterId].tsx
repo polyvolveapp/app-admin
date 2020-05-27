@@ -3,7 +3,7 @@ import { Notification } from "polyvolve-ui/lib"
 
 import UI from "../../../src/components/ui"
 
-import * as singleStyle from "../../src/style/single.module.scss"
+import * as singleStyle from "../../../src/style/single.module.scss"
 import ReviewMasterView from "../../../src/components/reviewmaster/view/ReviewMasterView"
 import { withRouter, useRouter } from "next/router"
 import { DataLoader } from "../../../src/components/utils"

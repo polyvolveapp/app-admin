@@ -6,7 +6,7 @@ import {
 import Subsection from "../../ui/section/Subsection"
 import SubsectionTitle from "../../ui/section/SubsectionTitle"
 import SubsectionContent from "../../ui/section/SubsectionContent"
-import { ReviewMaster, User } from "polyvolve-ui/lib/@types"
+import { ReviewMaster } from "polyvolve-ui/lib/@types"
 import { singleStyle } from "../../../lib/reexports"
 import { UserItem } from "../../single/dependencies/UserItem"
 

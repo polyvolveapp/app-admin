@@ -18,9 +18,17 @@ import { Icon, InfoIcon } from "polyvolve-ui/lib/icons"
 import { SelectButtonMenuItem } from "polyvolve-ui/lib/nav/SelectButtonMenu"
 import { formatRecur, getRecurInfoText } from "../../../lib/date"
 import DateHandler, { IntervalTypeSelectMenuItem } from "../view/DateHandler"
-import { ReviewSchema } from "../../../redux/schema"
-import { Select, componentStyle, modalStyle, reviewMasterOverviewStyle } from "../../../lib/reexports"
-import { ReviewMasterContainerType, IntervalType } from "polyvolve-ui/lib/@types"
+import {
+  Select,
+  componentStyle,
+  modalStyle,
+  reviewMasterOverviewStyle,
+} from "../../../lib/reexports"
+import {
+  ReviewMasterContainerType,
+  IntervalType,
+  ReviewSchema,
+} from "polyvolve-ui/lib/@types"
 
 interface Props extends FormikProps<ReviewMasterCreateFormData> {
   loading: boolean
@@ -61,7 +69,6 @@ export default class ReviewMasterCreateForm extends DateHandler<
 
   isRecurring = (): boolean => this.state.activeType === "Recurring"
 
-
   onUpdateSchema = (schemaWrapper: { value: string; label: string }) =>
     this.props.setFieldValue("schema", schemaWrapper)
 
@@ -96,8 +103,12 @@ export default class ReviewMasterCreateForm extends DateHandler<
                     value={this.state.activeType}
                     onClick={this.updateActiveType}
                     onUpdate={() => {}}
-                    className={reviewMasterOverviewStyle.activeTypeSelectionMenu}
-                    itemClassName={reviewMasterOverviewStyle.activeTypeSelectionMenuButton}
+                    className={
+                      reviewMasterOverviewStyle.activeTypeSelectionMenu
+                    }
+                    itemClassName={
+                      reviewMasterOverviewStyle.activeTypeSelectionMenuButton
+                    }
                     items={[{ name: "Singular" }, { name: "Recurring" }]}
                   />
                 </div>
@@ -155,7 +166,8 @@ export default class ReviewMasterCreateForm extends DateHandler<
                         reviewMasterOverviewStyle.recurringContainer,
                         modalStyle.modalFormRowContainer
                       )}>
-                      <div className={reviewMasterOverviewStyle.recurringOptions}>
+                      <div
+                        className={reviewMasterOverviewStyle.recurringOptions}>
                         <label>Recurs</label>
                         <div className={modalStyle.modalFormInputContainer}>
                           <SelectButtonMenu<IntervalTypeSelectMenuItem>

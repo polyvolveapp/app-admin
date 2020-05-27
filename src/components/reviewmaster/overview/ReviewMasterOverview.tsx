@@ -10,13 +10,13 @@ import Link from "next/link"
 import { ReviewMasterGlobalActions } from "../../../redux/review/master"
 import { ReviewMasterCreateActions } from "../../../redux/review/master/creation"
 import ReviewMasterCreation from "./ReviewMasterCreation"
-import { SchemaActions, ReviewSchema } from "../../../redux/schema"
+import { SchemaActions } from "../../../redux/schema"
 import {
   overviewStyle,
   reviewMasterOverviewStyle,
 } from "../../../lib/reexports"
 import SortableOverview from "../../utils/SortableOverview"
-import { ReviewMaster } from "polyvolve-ui/lib/@types"
+import { ReviewMaster, ReviewSchema } from "polyvolve-ui/lib/@types"
 
 interface Props {
   loading: boolean

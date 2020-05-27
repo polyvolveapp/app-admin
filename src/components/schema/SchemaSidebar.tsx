@@ -1,8 +1,8 @@
 import * as React from "react"
-import Actions from "../ui/sidebar/Actions";
-import RecentlyViewed from "../ui/sidebar/RecentlyViewed";
-import { connect } from "react-redux";
-import { RootState } from "../../redux";
+import Actions from "../ui/sidebar/Actions"
+import RecentlyViewed from "../ui/sidebar/RecentlyViewed"
+import { connect } from "react-redux"
+import { RootState } from "../../redux"
 
 interface Props {
   data?: undefined
@@ -16,18 +16,22 @@ class SchemaSidebar extends React.Component<Props> {
       <React.Fragment>
         <Actions>
           {!data && "..."}
-          {data && <ul>
-            <li><a>Placeholder</a></li>
-          </ul>}
+          {data && (
+            <ul>
+              <li>
+                <a>Placeholder</a>
+              </li>
+            </ul>
+          )}
         </Actions>
         <RecentlyViewed />
-      </React.Fragment>)
+      </React.Fragment>
+    )
   }
 }
 
 function mapStateToProps(state: RootState): Props {
-  return {
-  }
+  return {}
 }
 
 export default connect(mapStateToProps)(SchemaSidebar)

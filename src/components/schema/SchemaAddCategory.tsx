@@ -1,11 +1,12 @@
 import * as React from "react"
 import { Formik } from "formik"
-import { SchemaActions, ReviewSchema } from "../../redux/schema"
+import { SchemaActions } from "../../redux/schema"
 import { InfoIcon } from "polyvolve-ui/lib/icons";
 import { Error, Button, LoadButton } from "polyvolve-ui/lib";
 import { modalStyle, cx, formStyle } from "../../lib/reexports";
 import * as schemaStyle from "../../style/schema.module.scss"
 import * as helpIcon from "../../assets/icons/help.svg"
+import { ReviewSchema } from "polyvolve-ui/lib/@types"
 
 interface Props {
   schemaActions: typeof SchemaActions
