@@ -5,7 +5,7 @@ import { Team } from "polyvolve-ui/lib/@types"
 import { Button } from "polyvolve-ui/lib"
 import { Icon } from "polyvolve-ui/lib/icons"
 
-import TeamCreation from "./TeamCreate"
+import TeamCreate from "./TeamCreate"
 import { RootState } from "../../../redux"
 import { TeamGlobalActions, TeamCreationActions } from "../../../redux/team"
 import Link from "next/link"
@@ -57,12 +57,7 @@ class TeamList extends React.Component<Props, State> {
   }
 
   render(): JSX.Element {
-    const {
-      all,
-      initialized,
-      loading,
-      teamCreateActions: teamCreateActions,
-    } = this.props
+    const { all, initialized, loading, teamCreateActions } = this.props
 
     return (
       <React.Fragment>
@@ -100,7 +95,7 @@ class TeamList extends React.Component<Props, State> {
                 Add new Team
               </Button>
             </div>
-            <TeamCreation
+            <TeamCreate
               actions={teamCreateActions!}
               positionRef={this.addTeamRef}
               show={this.state.showAddTeam}

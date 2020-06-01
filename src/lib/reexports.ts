@@ -5,6 +5,7 @@ import * as singleStyle from "../style/single.module.scss"
 import * as sidebarStyle from "../style/sidebar.module.scss"
 import * as formStyle from "../style/form.module.scss"
 import * as footerStyle from "../style/footer.module.scss"
+import * as authStyle from "../style/auth.module.scss"
 import * as schemaStyle from "../style/schema.module.scss"
 import * as overviewStyle from "../style/overview/overview.module.scss"
 import * as reviewMasterOverviewStyle from "../style/overview/reviewmaster.module.scss"
@@ -25,11 +26,12 @@ export {
   singleStyle,
   Select,
   style,
+  authStyle,
   footerStyle,
   componentStyle,
   overviewStyle,
   dashboardStyle,
   sortableOverviewStyle,
   reviewMasterOverviewStyle,
-  sidebarStyle
+  sidebarStyle,
 }

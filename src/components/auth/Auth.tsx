@@ -7,6 +7,7 @@ import { actions as AuthActions } from "../../redux/auth"
 import { AdminOverviewActions as AdminActions } from "../../redux/admin/overview"
 import { RootState } from "../../redux"
 import { WithRouterProps } from "next/dist/client/with-router"
+import AuthLoadingScreen from "./AuthLoadingScreen"
 
 interface Props extends WithRouterProps {
   authenticated?: boolean
@@ -53,13 +54,19 @@ class Auth extends React.Component<Props, {}> {
       router,
     } = this.props
 
+    /*
     if (!authenticated && authInitialized) router.push("/login")
     if (!adminInitialized) adminActions.loadAdminRequest()
+    */
   }
 
   render(): JSX.Element {
     const { children, authenticated } = this.props
-    return authenticated ? <React.Fragment>{children}</React.Fragment> : null
+    return authenticated ? (
+      <React.Fragment>{children}</React.Fragment>
+    ) : (
+      <AuthLoadingScreen />
+    )
   }
 }
 

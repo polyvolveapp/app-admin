@@ -28,7 +28,7 @@ const Team = () => {
             </Notification>
             <TeamView
               id={teamId as string}
-              loading={true}
+              loading={false}
               initialized={false}
               users={[]}
             />
