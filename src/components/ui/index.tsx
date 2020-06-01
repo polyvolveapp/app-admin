@@ -17,9 +17,6 @@ const ui: React.FunctionComponent<Props> = props => (
     showSidebarRight={props.showSidebarRight}
     sidebarLeftComponent={props.sidebarLeftComponent}
     sidebarRightComponent={props.sidebarRightComponent}>
-    <Head>
-      <title>{SITE_NAME}</title>
-    </Head>
     {props.children}
   </Layout>
 )

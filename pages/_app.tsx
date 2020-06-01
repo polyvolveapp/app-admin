@@ -9,6 +9,8 @@ import "../src/style/button.scss"
 import * as style from "../src/style/style.scss"
 import * as componentStyle from "../src/style/component.scss"
 import "polyvolve-ui/style/style.scss"
+import Head from "next/head"
+import { SITE_NAME } from "../src/constants/env"
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -35,7 +37,12 @@ export default class extends App {
 
     return (
       <Provider store={getStore(undefined, props.server)}>
-        <Component {...pageProps} />
+        <>
+          <Head>
+            <title>{SITE_NAME}</title>
+          </Head>
+          <Component {...pageProps} />
+        </>
       </Provider>
     )
   }
