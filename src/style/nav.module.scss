@@ -2,10 +2,9 @@
 
 .userHeader {
 	background-color: $bg-content;
-	width: 200px;
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid $bg-content-diff;
+	margin-left: 1rem;
 	justify-content: center;
 }
 
@@ -15,7 +14,7 @@
 	align-items: center;
 	transition: all 0.2s ease 0s;
 	border-bottom: 1px solid $bg-content-diff;
-	height: 2.2rem;
+	height: 38px;
 	flex-grow: 1;
 	background-color: $bg-content;
 	
@@ -64,4 +63,9 @@
 	}
 
 
+}
+
+.searchInput {
+	// do better later
+	padding: 0.2rem !important;
 }

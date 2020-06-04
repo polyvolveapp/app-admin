@@ -25,4 +25,4 @@ export const RECENTLY_VIEWED_AMOUNT = 6
 export const NOTIFICATION_MESSAGE_REMOVE_DELAY = 5000
 
 export const PRE_ALPHA_NOTIFICATION_TEXT =
-  "This is a POC and not yet a polished product. The UI will be revisioned and streamlined."
+  "This is a POC/SaaS template and not a polished product, especially concerning the UI."

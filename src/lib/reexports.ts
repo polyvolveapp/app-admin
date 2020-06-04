@@ -4,6 +4,8 @@ import * as modalStyle from "../style/modal.module.scss"
 import * as singleStyle from "../style/single.module.scss"
 import * as sidebarStyle from "../style/sidebar.module.scss"
 import * as formStyle from "../style/form.module.scss"
+import * as layoutStyle from "../style/layout.module.scss"
+import * as navStyle from "../style/nav.module.scss"
 import * as footerStyle from "../style/footer.module.scss"
 import * as authStyle from "../style/auth.module.scss"
 import * as schemaStyle from "../style/schema.module.scss"
@@ -34,4 +36,6 @@ export {
   sortableOverviewStyle,
   reviewMasterOverviewStyle,
   sidebarStyle,
+  layoutStyle,
+  navStyle,
 }

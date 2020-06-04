@@ -3,6 +3,7 @@ import cx from "classnames"
 import { connect } from "react-redux"
 import { RootState } from "../../redux"
 
+import * as userIcon from "../../assets/icons/user.svg"
 import * as chevronDownIcon from "../../assets/icons/chevron-down.svg"
 import * as userHeaderStyle from "../../style//nav.module.scss"
 import { Icon } from "polyvolve-ui/lib/icons"
@@ -20,7 +21,7 @@ class UserHeader extends React.Component<Props> {
 
     return (
       <div className={cx(className, userHeaderStyle.userHeader)}>
-        {name && surname && <span>{name + " " + surname}</span>}
+        <Icon reverse src={userIcon} size={{ width: 20, height: 20 }} />
         <Icon src={chevronDownIcon} size={{ width: 24, height: 24 }} />
       </div>
     )
