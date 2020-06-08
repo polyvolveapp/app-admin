@@ -32,7 +32,7 @@ export const PRE_ALPHA_NOTIFICATION_TEXT = (
     </p>
     <p className="mb1">
       The onboarding is completely absent. Mail delivery is disabled due to
-      security concerns (=> the actual review process cannot be tested).
+      security concerns (the actual review process cannot be tested).
     </p>
     <p>
       Also, creation and editing is unrestricted for testing purposes. Just a
