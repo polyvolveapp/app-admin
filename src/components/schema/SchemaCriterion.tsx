@@ -20,6 +20,7 @@ import {
   ReviewCriterion,
   ReviewCategory,
 } from "polyvolve-ui/lib/@types"
+import PInput from "../ui/PInput"
 
 interface Props {
   index: number
@@ -115,7 +116,7 @@ const SchemaCriterionEdit: React.FC<FormProps> = props => (
     <div className={formStyle.formRow}>
       <div className={singleStyle.informationFormItem}>
         <label>Name</label>
-        <input
+        <PInput
           name="name"
           type="text"
           onChange={props.handleChange}

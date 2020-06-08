@@ -28,7 +28,7 @@ const Layout: React.FunctionComponent<Props> = props => (
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
     </Head>
-    <LoadingBar style={{ backgroundColor: "#00b7ff" }} />
+    {/*<LoadingBar style={{ backgroundColor: "#00b7ff" }} />*/}
     <NotificationMessageContainer />
     <div
       id={layoutStyle.layout}

@@ -5,6 +5,7 @@ import cx from "classnames"
 
 import { TeamCreationActions } from "../../../redux/team"
 import { modalStyle } from "../../../lib/reexports"
+import PInput from "../../ui/PInput"
 
 interface Props {
   show: boolean
@@ -73,7 +74,7 @@ class TeamCreation extends React.Component<Props> {
               onSubmit={handleSubmit}>
               <div className={modalStyle.modalFormRow}>
                 <label>Name</label>
-                <input
+                <PInput
                   name="name"
                   type="text"
                   onChange={handleChange}

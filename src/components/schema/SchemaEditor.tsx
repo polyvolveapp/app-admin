@@ -82,11 +82,13 @@ class SchemaEditor extends React.Component<Props, State> {
           schema: this.state.activeSchema,
         })
       } else {
-        this.setState({ activeSchema: newProps.schemas[0] }, () =>
-          this.props.schemaActions.getCategoriesRequest({
-            schema: newProps.schemas[0],
-          })
-        )
+        if (newProps.schemas.length > 0) {
+          this.setState({ activeSchema: newProps.schemas[0] }, () =>
+            this.props.schemaActions.getCategoriesRequest({
+              schema: newProps.schemas[0],
+            })
+          )
+        }
       }
       // check on difference whether activeSchema from before is still available
       // retriev new schemas on adding shcema
@@ -145,9 +147,9 @@ class SchemaEditor extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <div className={cx(style.mb1, schemaStyle.schemaSelectBar)}>
+        <div className={cx("mb1", schemaStyle.schemaSelectBar)}>
           <Select
-            className={cx(componentStyle.select, schemaStyle.selectSchema)}
+            className={cx(schemaStyle.selectSchema)}
             classNamePrefix="pv"
             options={schemas.map(schema => ({
               value: schema,

@@ -14,6 +14,7 @@ import {
 import * as schemaStyle from "../../style/schema.module.scss"
 import * as helpIcon from "../../assets/icons/help.svg"
 import { ReviewCategory } from "polyvolve-ui/lib/@types"
+import PInput from "../ui/PInput"
 
 interface Props {
   category: ReviewCategory
@@ -104,7 +105,7 @@ class SchemaAddCriterion extends React.Component<Props> {
                 <div className={formStyle.formRowGrid}>
                   <label>Topic</label>
                   <div className={formStyle.formRowInputContainer}>
-                    <input
+                    <PInput
                       name="name"
                       type="text"
                       className={modalStyle.modalFormInput}

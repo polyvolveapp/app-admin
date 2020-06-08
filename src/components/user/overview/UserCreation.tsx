@@ -6,6 +6,7 @@ import { cx, componentStyle, Select, modalStyle } from "../../../lib/reexports"
 import { UserCreationActions } from "../../../redux/user/creation"
 import { Sex } from "polyvolve-ui/lib/@types"
 import { customStyles } from "../../../lib/customStyles"
+import PInput from "../../ui/PInput"
 
 interface Props {
   show: boolean
@@ -103,7 +104,7 @@ class UserCreation extends React.Component<Props> {
               onSubmit={handleSubmit}>
               <div className={modalStyle.modalFormRow}>
                 <label>Mail</label>
-                <input
+                <PInput
                   className={modalStyle.modalFormInput}
                   name="mail"
                   type="email"
@@ -115,7 +116,7 @@ class UserCreation extends React.Component<Props> {
               {touched.mail && errors.mail && <Error>{errors.mail}</Error>}
               <div className={modalStyle.modalFormRow}>
                 <label>Name</label>
-                <input
+                <PInput
                   className={modalStyle.modalFormInput}
                   name="name"
                   type="text"
@@ -127,7 +128,7 @@ class UserCreation extends React.Component<Props> {
               {touched.name && errors.name && <Error>{errors.name}</Error>}
               <div className={modalStyle.modalFormRow}>
                 <label>Surname</label>
-                <input
+                <PInput
                   className={modalStyle.modalFormInput}
                   name="surname"
                   type="text"
@@ -141,7 +142,7 @@ class UserCreation extends React.Component<Props> {
               )}
               <div className={modalStyle.modalFormRow}>
                 <label>Position</label>
-                <input
+                <PInput
                   className={modalStyle.modalFormInput}
                   name="position"
                   type="text"

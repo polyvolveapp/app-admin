@@ -15,6 +15,7 @@ import SectionContent from "../../ui/section/SectionContent"
 import SubsectionContent from "../../ui/section/SubsectionContent"
 import { singleStyle } from "../../../lib/reexports"
 import { formatSex } from "../../../lib/format"
+import PInput from "../../ui/PInput"
 
 interface UpdateUserParams {
   id: string
@@ -147,7 +148,7 @@ class UserInformationSection extends React.Component<Props, State> {
                       <form onSubmit={handleSubmit}>
                         <div className={singleStyle.informationFormItem}>
                           <label>Name</label>
-                          <input
+                          <PInput
                             name="name"
                             type="text"
                             onChange={handleChange}
@@ -160,7 +161,7 @@ class UserInformationSection extends React.Component<Props, State> {
                         )}
                         <div className={singleStyle.informationFormItem}>
                           <label>Name</label>
-                          <input
+                          <PInput
                             name="surname"
                             type="text"
                             onChange={handleChange}
@@ -173,7 +174,7 @@ class UserInformationSection extends React.Component<Props, State> {
                         )}
                         <div className={singleStyle.informationFormItem}>
                           <label>Mail</label>
-                          <input
+                          <PInput
                             name="mail"
                             type="text"
                             onChange={handleChange}
@@ -186,7 +187,7 @@ class UserInformationSection extends React.Component<Props, State> {
                         )}
                         <div className={singleStyle.informationFormItem}>
                           <label>Position</label>
-                          <input
+                          <PInput
                             name="position"
                             type="text"
                             onChange={handleChange}

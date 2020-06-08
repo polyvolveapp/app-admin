@@ -7,6 +7,7 @@ import { modalStyle, cx, formStyle } from "../../lib/reexports";
 import * as schemaStyle from "../../style/schema.module.scss"
 import * as helpIcon from "../../assets/icons/help.svg"
 import { ReviewSchema } from "polyvolve-ui/lib/@types"
+import PInput from "../ui/PInput"
 
 interface Props {
   schemaActions: typeof SchemaActions
@@ -82,7 +83,7 @@ class SchemaAddCategory extends React.Component<Props> {
               <div className={formStyle.formRowGrid}>
                 <label>Topic</label>
                 <div className={formStyle.formRowInputContainer}>
-                  <input
+                  <PInput
                     name="name"
                     type="text"
                     className={modalStyle.modalFormInput}

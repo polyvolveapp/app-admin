@@ -1,44 +1,42 @@
 @import "vars.scss";
 
-:global {
-  .pv__control {
-    border: 1px solid $border-standard !important;
-    border-color: $border-standard !important;
-    border-radius: 4px;
-    padding: 1px 8px;
-    color: $text-dark;
-    font-family: $font-family;
+.pv__control {
+  border: 1px solid $border-standard !important;
+  border-color: $border-standard !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  color: $text-dark;
+  font-family: $font-family;
 
-    input {
-      box-shadow: none !important;
-      border: 0 !important;
-      font-size: $input-font-size !important;
-    }
-
-    &.pv__control--is-focused {
-      border-color: rgb(55, 116, 177) !important;
-      outline-color: currentcolor;
-      box-shadow: rgba(48, 96, 143, 0.25) 0px 0px 0px 0.2rem;
-    }
-  }
-
-  .pv__single-value,
-  .pv__placeholder {
-    margin-left: 0px !important;
+  input {
+    box-shadow: none !important;
+    border: 0 !important;
     font-size: $input-font-size !important;
   }
 
-  .pv__placeholder {
-    color: $text-medium;
+  &.pv__control--is-focused {
+    border-color: rgb(55, 116, 177) !important;
+    outline-color: currentcolor;
+    box-shadow: rgba(48, 96, 143, 0.25) 0px 0px 0px 0.2rem;
   }
+}
 
-  .pv__single-value {
-    color: $text-standard;
-  }
+.pv__single-value,
+.pv__placeholder {
+  margin-left: 0px !important;
+  font-size: $input-font-size !important;
+}
 
-  .pv__value-container {
-    padding: 0 !important;
-  }
+.pv__placeholder {
+  color: $text-medium;
+}
+
+.pv__single-value {
+  color: $text-standard;
+}
+
+.pv__value-container {
+  padding: 0 !important;
 }
 
 :global {
@@ -173,9 +171,9 @@
 }
 
 .body-auth {
-	background-color: $bg-content-diff;
+  background-color: $bg-content-diff;
 }
 
 .sk-circle {
-	margin: 0 auto;
+  margin: 0 auto;
 }

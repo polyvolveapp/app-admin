@@ -7,6 +7,7 @@ import { Button, Error } from "polyvolve-ui/lib"
 
 import { FormDataBasic } from "./ReviewMasterInformationSection"
 import { singleStyle, formStyle } from "../../../lib/reexports"
+import PInput from "../../ui/PInput"
 
 interface Props extends FormikProps<FormDataBasic> {
   toggleEditting: () => void
@@ -29,7 +30,7 @@ const ReviewMasterInformationBasicSubsection: React.FunctionComponent<Props> = p
       <div className={formStyle.formRow}>
         <div className={singleStyle.informationFormItem}>
           <label>Name</label>
-          <input
+          <PInput
             name="name"
             type="text"
             onChange={handleChange}

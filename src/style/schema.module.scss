@@ -1,5 +1,11 @@
 @import "vars.scss";
 
+.schemaAdd {
+	background-color: $bg-content;
+	padding: 1rem;
+	border-radius: $border-rounded-standard;
+}
+
 .schemaAddCategory {
 	margin: 1rem 0rem;
 	padding: 1rem;

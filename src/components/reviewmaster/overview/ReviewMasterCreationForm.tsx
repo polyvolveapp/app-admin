@@ -29,6 +29,7 @@ import {
   IntervalType,
   ReviewSchema,
 } from "polyvolve-ui/lib/@types"
+import PInput from "../../ui/PInput"
 
 interface Props extends FormikProps<ReviewMasterCreateFormData> {
   loading: boolean
@@ -120,7 +121,7 @@ export default class ReviewMasterCreateForm extends DateHandler<
                     )}>
                     <label>Topic</label>
                     <div className={modalStyle.modalFormInputContainer}>
-                      <input
+                      <PInput
                         name="name"
                         type="text"
                         className={modalStyle.modalFormInput}
@@ -197,7 +198,7 @@ export default class ReviewMasterCreateForm extends DateHandler<
                       <div className={modalStyle.modalFormRow}>
                         <label>Interval</label>
                         <div className={modalStyle.modalFormInputContainer}>
-                          <input
+                          <PInput
                             name="interval"
                             type="number"
                             min={1}
@@ -236,7 +237,7 @@ export default class ReviewMasterCreateForm extends DateHandler<
                     <div className={modalStyle.modalFormRow}>
                       <label>Start of period</label>
                       <div className={modalStyle.modalFormInputContainer}>
-                        <input
+                        <PInput
                           name="periodStart"
                           type="date"
                           className={modalStyle.modalFormInput}
@@ -257,7 +258,7 @@ export default class ReviewMasterCreateForm extends DateHandler<
                     <div className={modalStyle.modalFormRow}>
                       <label>End of period</label>
                       <div className={modalStyle.modalFormInputContainer}>
-                        <input
+                        <PInput
                           name="periodEnd"
                           type="date"
                           disabled={this.isRecurring()}
@@ -279,7 +280,7 @@ export default class ReviewMasterCreateForm extends DateHandler<
                     <div className={modalStyle.modalFormRow}>
                       <label>Due at</label>
                       <div className={modalStyle.modalFormInputContainer}>
-                        <input
+                        <PInput
                           name="dueAt"
                           type="date"
                           className={modalStyle.modalFormInput}
@@ -301,7 +302,7 @@ export default class ReviewMasterCreateForm extends DateHandler<
                       <div className={modalStyle.modalFormRow}>
                         <label>Recurs first on</label>
                         <div className={modalStyle.modalFormInputContainer}>
-                          <input
+                          <PInput
                             name="recursFirstOn"
                             type="date"
                             disabled={true}

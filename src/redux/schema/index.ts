@@ -404,12 +404,6 @@ export function* handleGetSchemas() {
       continue
     }
 
-    if (ok.status != 200) {
-      yield put(actions.getSchemasResponse({ error: getErrorMessage(err) }))
-      continue
-    }
-
-
     const reviewSchemas = ok.data.data
 
     yield put(actions.getSchemasResponse({ error: "", schemas: reviewSchemas }))

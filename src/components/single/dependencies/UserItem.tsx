@@ -15,7 +15,8 @@ interface UserItemMenuProps extends SelectElementMenuComponent, UserItemProps { 
 export const UserItem: React.FC<UserItemProps> = props => (
   <div key={`user-item-${props.user.id}-div`} className={singleStyle.menuListItem}>
     <Link
-      href={`/user/${props.user.id}`}
+      href={`/user/[userId]`}
+      as={`/user/${props.user.id}`}
       key={`user-item-${props.user.id}-name`}>
       <a key={`user-item-${props.user.id}-a`}>
         {getUserName(props.user)}

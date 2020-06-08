@@ -14,7 +14,8 @@ interface TeamItemMenuProps extends SelectElementMenuComponent, TeamItemProps {}
 
 export const TeamItem: React.FC<TeamItemProps> = props => (
   <Link
-    href={`/team/${props.team.id}`}
+    href={`/team/[teamId]`}
+    as={`/team/${props.team.id}`}
     key={`team-item-${props.team.id}-link`}>
     <a
       key={`team-item-${props.team.id}-a`}

@@ -24,5 +24,19 @@ export const RECENTLY_VIEWED_AMOUNT = 6
 
 export const NOTIFICATION_MESSAGE_REMOVE_DELAY = 5000
 
-export const PRE_ALPHA_NOTIFICATION_TEXT =
-  "This is a POC/SaaS template and not a polished product, especially concerning the UI."
+export const PRE_ALPHA_NOTIFICATION_TEXT = (
+  <div>
+    <p>
+      This is a POC/SaaS template. This is not finished/polished by any margin!
+      Bugs and inconsistencies are expected.
+    </p>
+    <p className="mb1">
+      The onboarding is completely absent. Mail delivery is disabled due to
+      security concerns (=> the actual review process cannot be tested).
+    </p>
+    <p>
+      Also, creation and editing is unrestricted for testing purposes. Just a
+      warning: that includes the possibility of vandalized content 🙄.
+    </p>
+  </div>
+)

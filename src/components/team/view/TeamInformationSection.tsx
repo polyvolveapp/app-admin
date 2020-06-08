@@ -12,6 +12,7 @@ import SubsectionEditButton from "../../ui/section/SubsectionEditButton"
 import SubsectionContent from "../../ui/section/SubsectionContent"
 import { Team } from "polyvolve-ui/lib/@types"
 import { singleStyle } from "../../../lib/reexports"
+import PInput from "../../ui/PInput"
 
 interface UpdateTeamParams {
   id: string
@@ -119,7 +120,7 @@ class TeamInformationSection extends React.Component<Props, State> {
                     <form onSubmit={handleSubmit}>
                       <div className={singleStyle.informationFormItem}>
                         <label>Name</label>
-                        <input
+                        <PInput
                           name="name"
                           type="text"
                           onChange={handleChange}

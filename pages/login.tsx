@@ -12,6 +12,7 @@ import * as loginStyle from "../src/style/auth.module.scss"
 import { AuthActions } from "../src/redux/auth"
 import { RootState } from "../src/redux"
 import { style } from "../src/lib/reexports"
+import PInput from "../src/components/ui/PInput"
 
 interface Props {
   error?: string
@@ -108,7 +109,7 @@ class Login extends React.Component<Props, State> {
               }) => (
                 <form className={loginStyle.authForm} onSubmit={handleSubmit}>
                   <label>Mail</label>
-                  <input
+                  <PInput
                     name="mail"
                     type="email"
                     onChange={handleChange}
@@ -117,7 +118,7 @@ class Login extends React.Component<Props, State> {
                   />
                   {touched.mail && errors.mail && <Error>{errors.mail}</Error>}
                   <label className={style.passLabel}>Password</label>
-                  <input
+                  <PInput
                     name="password"
                     type="password"
                     onChange={handleChange}

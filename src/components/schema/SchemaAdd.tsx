@@ -3,12 +3,10 @@ import { Formik } from "formik"
 import { SchemaActions } from "../../redux/schema"
 import { InfoIcon } from "polyvolve-ui/lib/icons"
 import { Error, Button, LoadButton } from "polyvolve-ui/lib"
-import {
-  modalStyle,
-  formStyle,
-} from "../../lib/reexports"
+import { modalStyle, formStyle, cx } from "../../lib/reexports"
 import * as schemaStyle from "../../style/schema.module.scss"
 import * as helpIcon from "../../assets/icons/help.svg"
+import PInput from "../ui/PInput"
 
 interface Props {
   schemaActions: typeof SchemaActions
@@ -83,12 +81,14 @@ class SchemaAdd extends React.Component<Props> {
           setFieldTouched,
         }) =>
           !show ? null : (
-            <form className={schemaStyle.schemaAdd} onSubmit={handleSubmit}>
+            <form
+              className={cx("mb1", schemaStyle.schemaAdd)}
+              onSubmit={handleSubmit}>
               <div className={formStyle.formRowContainer}>
                 <div className={formStyle.formRowGrid}>
                   <label>Name</label>
                   <div className={formStyle.formRowInputContainer}>
-                    <input
+                    <PInput
                       name="name"
                       type="text"
                       className={modalStyle.modalFormInput}

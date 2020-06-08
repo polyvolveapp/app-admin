@@ -10,6 +10,7 @@ import { FormDataPeriod } from "./ReviewMasterInformationSection"
 import { getRecurInfoText } from "../../../lib/date"
 import DateHandler, { IntervalTypeSelectMenuItem } from "./DateHandler"
 import { formStyle, singleStyle, componentStyle, reviewMasterOverviewStyle } from "../../../lib/reexports"
+import PInput from "../../ui/PInput"
 
 const selectOptions = [
   { value: "Singular", label: "Singular" },
@@ -76,7 +77,7 @@ class ReviewMasterInformationPeriodSubsection extends DateHandler<
             <div className={formStyle.formRow}>
               <div className={singleStyle.informationFormItem}>
                 <label>Interval</label>
-                <input
+                <PInput
                   name="interval"
                   type="number"
                   min={1}
@@ -137,7 +138,7 @@ class ReviewMasterInformationPeriodSubsection extends DateHandler<
         <div className={formStyle.formRow}>
           <div className={singleStyle.informationFormItem}>
             <label>Period start</label>
-            <input
+            <PInput
               name="periodStart"
               type="date"
               onChange={this.handlePeriodStartChange}
@@ -152,7 +153,7 @@ class ReviewMasterInformationPeriodSubsection extends DateHandler<
         <div className={formStyle.formRow}>
           <div className={singleStyle.informationFormItem}>
             <label>Period end</label>
-            <input
+            <PInput
               name="periodEnd"
               type="date"
               onChange={handleChange}
@@ -167,7 +168,7 @@ class ReviewMasterInformationPeriodSubsection extends DateHandler<
         <div className={formStyle.formRow}>
           <div className={singleStyle.informationFormItem}>
             <label>Due at</label>
-            <input
+            <PInput
               name="dueAt"
               type="date"
               onChange={handleChange}

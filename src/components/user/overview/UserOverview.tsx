@@ -76,7 +76,8 @@ class UserOverview extends React.Component<Props, State> {
               <div className={overviewStyle.rowItem}>
                 <Link
                   key={`user-list-item-${user.id}-name`}
-                  href={`/user/${user.id}`}>
+                  href={`/user/[userId]`}
+                  as={`/user/${user.id}`}>
                   <a>{getUserName(user)}</a>
                 </Link>
                 <Icon

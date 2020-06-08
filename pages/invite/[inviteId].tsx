@@ -19,6 +19,7 @@ import { SITE_NAME } from "../../src/constants/env"
 import { RootState } from "../../src/redux"
 import { WithRouterProps } from "next/dist/client/with-router"
 import { style } from "../../src/lib/reexports"
+import PInput from "../../src/components/ui/PInput"
 
 interface Props extends WithRouterProps {
   error: string
@@ -127,7 +128,8 @@ class AcceptInvite extends React.Component<Props, State> {
                   className={registerStyle.authForm}
                   onSubmit={handleSubmit}>
                   <label>Nick</label>
-                  <input
+                  <PInput
+                    className="input"
                     name="nick"
                     type="text"
                     onChange={handleChange}
@@ -136,7 +138,8 @@ class AcceptInvite extends React.Component<Props, State> {
                   />
                   {touched.nick && errors.nick && <Error>{errors.nick}</Error>}
                   <label>Mail</label>
-                  <input
+                  <PInput
+                    className="input"
                     name="mail"
                     type="email"
                     onChange={handleChange}
@@ -145,7 +148,8 @@ class AcceptInvite extends React.Component<Props, State> {
                   />
                   {touched.mail && errors.mail && <Error>{errors.mail}</Error>}
                   <label className={style.passLabel}>Password</label>
-                  <input
+                  <PInput
+                    className="input"
                     name="password"
                     type="password"
                     onChange={handleChange}

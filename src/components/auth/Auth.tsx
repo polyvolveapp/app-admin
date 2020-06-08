@@ -54,10 +54,8 @@ class Auth extends React.Component<Props, {}> {
       router,
     } = this.props
 
-    /*
     if (!authenticated && authInitialized) router.push("/login")
     if (!adminInitialized) adminActions.loadAdminRequest()
-    */
   }
 
   render(): JSX.Element {

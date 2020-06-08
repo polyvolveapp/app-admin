@@ -10,10 +10,7 @@ import {
 import { API_URL } from "../../../constants/env"
 import { lazyProtect } from "await-protect"
 import { transformReviewMaster } from "./util"
-import {
-  ReviewMaster,
-  ReviewMasterScoreItem,
-} from "polyvolve-ui/lib/@types"
+import { ReviewMaster, ReviewMasterScoreItem } from "polyvolve-ui/lib/@types"
 import { NotificationMessageActions } from "../../message"
 
 export interface ReviewMasterSpecifiedState {
@@ -216,7 +213,7 @@ export function* handleUpdateReviewMaster() {
       teamIds,
     }
 
-    const { res, err } = yield call(
+    const resp = yield call(
       lazyProtect(
         axios.post(`${API_URL}/review/master/update`, body, {
           withCredentials: true,
@@ -225,9 +222,9 @@ export function* handleUpdateReviewMaster() {
       )
     )
 
-    if (err || res.status != 200) {
+    if (resp.err) {
       yield put(
-        actions.updateReviewMasterResponse({ error: getErrorMessage(err) })
+        actions.updateReviewMasterResponse({ error: getErrorMessage(resp.err) })
       )
       yield put(
         NotificationMessageActions.info(
@@ -237,7 +234,7 @@ export function* handleUpdateReviewMaster() {
       continue
     }
 
-    const data = res.data.data
+    const data = resp.ok.data.data
     const reviewMaster: ReviewMaster = transformReviewMaster(data.reviewMaster)
     reviewMaster.reviewedUsers = data.reviewedUsers
     reviewMaster.reviews = data.reviews
@@ -250,5 +247,3 @@ export function* handleUpdateReviewMaster() {
     )
   }
 }
-
-

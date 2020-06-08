@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Line } from "polyvolve-ui/lib"
 import { sortableOverviewStyle } from "../../lib/reexports"
+import PInput from "../ui/PInput"
 
 interface SortableOverviewItem {
   id: string
@@ -61,7 +62,7 @@ export default class SortableOverview<
                 key={`sortableOverviewFilter-${filter.name}`}
                 className={sortableOverviewStyle.sortableOverviewFilter}>
                 <label>{filter.name}</label>
-                <input
+                <PInput
                   name="mail"
                   type="email"
                   onChange={this.handleFilterChange(filter)}

@@ -89,7 +89,8 @@ class ReviewMasterView extends React.Component<Props, State> {
               <div className={overviewStyle.rowItem}>
                 <Link
                   key={`reviewMaster-list-item-${reviewMaster.id}-name`}
-                  href={`/review/master/${reviewMaster.id}`}>
+                  href={`/review/master/[reviewMasterId]`}
+                  as={`/review/master/${reviewMaster.id}`}>
                   <a>{reviewMaster.name}</a>
                 </Link>
               </div>

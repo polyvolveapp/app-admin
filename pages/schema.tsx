@@ -15,7 +15,7 @@ const Schema = () => {
     <DynamicAuth>
       <DataLoader>
         <UI
-          showSidebarLeft={false}
+          showSidebarLeft={true}
           sidebarLeftComponent={null}
           showSidebarRight={true}
           sidebarRightComponent={<SchemaSidebar />}>

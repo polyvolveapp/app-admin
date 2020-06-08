@@ -72,7 +72,8 @@ class TeamList extends React.Component<Props, State> {
                   <div className={overviewStyle.rowItem}>
                     <Link
                       key={`team-list-item-${team.id}-name`}
-                      href={`/team/${team.id}`}>
+                      href={`/team/[teamId]`}
+                      as={`/team/${team.id}`}>
                       <a>{team.name}</a>
                     </Link>
                     <Icon
