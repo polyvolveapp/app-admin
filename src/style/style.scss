@@ -3,6 +3,10 @@
 @import "./vars.scss";
 @import "./button.scss";
 
+*, input, select, textarea, option, button {
+	outline: none!important;
+}
+
 html {
   box-sizing: border-box;
 }
