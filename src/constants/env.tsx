@@ -11,6 +11,8 @@ export const SITE_IMAGE = ""
 
 export const API_URL = "https://polyvolve-api.herokuapp.com"
 
+export const REVIEW_URL = "http://localhost:3333"
+
 // In days.
 export const DEFAULT_DUE_DATE_ADDITION = 7
 

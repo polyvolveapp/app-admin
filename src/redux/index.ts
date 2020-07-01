@@ -33,6 +33,7 @@ import {
   handleUpdateUser,
   UserSpecifiedState,
   handleGetScores,
+  handleGetLinkForReviewMaster,
 } from "./user"
 import {
   reviewMasterOverviewReducer,
@@ -219,6 +220,7 @@ export default function* rootSaga() {
   yield fork(handleGetUser)
   yield fork(handleUpdateUser)
   yield fork(handleGetScores)
+  yield fork(handleGetLinkForReviewMaster)
 
   yield fork(handleMarkUser)
   yield fork(handleUnmarkUser)

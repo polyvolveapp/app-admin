@@ -85,7 +85,8 @@ class UserView extends React.Component<Props, State> {
     } = this.props
     const { activeTab } = this.state
 
-    const masters = user ? user.reviewMasters : []
+    const reviewedInMasters = user ? user.reviewMasters : []
+    const reviewingMasters = user ? user.reviewingMasters : []
 
     // this data check is lazy. improve it later.
     return (
@@ -112,11 +113,12 @@ class UserView extends React.Component<Props, State> {
                 <UserDependenciesSection
                   user={user}
                   allTeams={teams}
-                  userMasters={masters}
+                  userMasters={reviewedInMasters}
+                  reviewingMasters={reviewingMasters}
                   updateUser={activeActions.updateUserRequest}
                 />
                 <UserReviewMasterSection
-                  userMasters={masters}
+                  userMasters={reviewedInMasters}
                   allTeams={teams}
                   scores={scores}
                 />

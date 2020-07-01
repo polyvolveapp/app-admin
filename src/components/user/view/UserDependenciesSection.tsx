@@ -1,11 +1,7 @@
 import * as React from "react"
 import SectionTitle from "../../ui/section/SectionTitle"
 import Section from "../../ui/section/Section"
-import {
-  MultiSelectElementMenu,
-  MenuList,
-  Button,
-} from "polyvolve-ui/lib"
+import { MultiSelectElementMenu, MenuList, Button } from "polyvolve-ui/lib"
 
 import * as singleStyle from "../../../style/single.module.scss"
 import SectionButtonBar from "../../ui/section/SectionButtonBar"
@@ -29,6 +25,7 @@ interface Props {
   user: User
   allTeams: Team[]
   userMasters: ReviewMaster[]
+  reviewingMasters: ReviewMaster[]
   updateUser: (params: UpdateUserParams) => void
 }
 
@@ -90,7 +87,12 @@ class UserDependenciesSection extends React.Component<Props, State> {
     )
 
   render(): JSX.Element {
-    const { allTeams: teams, user, userMasters: masters } = this.props
+    const {
+      allTeams: teams,
+      user,
+      userMasters: masters,
+      reviewingMasters,
+    } = this.props
     const { editting } = this.state
     const activeTeams = this.getActiveTeams()
 
@@ -156,12 +158,25 @@ class UserDependenciesSection extends React.Component<Props, State> {
               />
             </Subsection>
             <Subsection size="full">
-              <SubsectionTitle title="Reviewed in Review Masters" />
+              <SubsectionTitle title="Reviewed in" />
               <SubsectionContent>
                 <MenuList innerClassName={singleStyle.selectItemContainer}>
                   {masters.map(master => (
                     <ReviewMasterItem
                       key={`master-item-${master.id}`}
+                      reviewMaster={master}
+                    />
+                  ))}
+                </MenuList>
+              </SubsectionContent>
+            </Subsection>
+            <Subsection size="full">
+              <SubsectionTitle title="Reviewing" />
+              <SubsectionContent>
+                <MenuList innerClassName={singleStyle.selectItemContainer}>
+                  {reviewingMasters.map(master => (
+                    <ReviewMasterItem
+                      key={`reviewing-master-item-${master.id}`}
                       reviewMaster={master}
                     />
                   ))}

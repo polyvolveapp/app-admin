@@ -9,7 +9,7 @@ import {
 } from "../../lib/axios"
 import { API_URL } from "../../constants/env"
 import { lazyProtect } from "await-protect"
-import { ScoreContainer, User } from "polyvolve-ui/lib/@types"
+import { ScoreContainer, User, ReviewMaster } from "polyvolve-ui/lib/@types"
 import { NotificationMessageActions } from "../message"
 import { getUserFromNames } from "../../lib/format"
 
@@ -19,6 +19,7 @@ export interface UserSpecifiedState {
   error: string
   data?: User
   scores?: ScoreContainer
+  linkHash: string
 }
 
 const actionNames = {
@@ -28,6 +29,8 @@ const actionNames = {
   UPDATE_USER_RESPONSE: "UPDATE_USER_RESPONSE",
   GET_SCORES_REQUEST: "GET_SCORES_REQUEST",
   GET_SCORES_RESPONSE: "GET_SCORES_RESPONSE",
+  GET_LINK_FOR_REVIEW_MASTER_REQUEST: "GET_LINK_FOR_REVIEW_MASTER_REQUEST",
+  GET_LINK_FOR_REVIEW_MASTER_RESPONSE: "GET_LINK_FOR_REVIEW_MASTER_RESPONSE",
 }
 
 const actions = {
@@ -49,6 +52,12 @@ const actions = {
   getScoresResponse: createAction<Partial<UserSpecifiedState>>(
     actionNames.GET_SCORES_RESPONSE
   ),
+  getLinkForReviewMasterRequest: createAction<Partial<UserSpecifiedState>>(
+    actionNames.GET_LINK_FOR_REVIEW_MASTER_REQUEST
+  ),
+  getLinkForReviewMasterResponse: createAction<Partial<UserSpecifiedState>>(
+    actionNames.GET_LINK_FOR_REVIEW_MASTER_RESPONSE
+  ),
 }
 
 export const UserActiveActions = actions
@@ -58,6 +67,7 @@ const initialState: UserSpecifiedState = {
   loading: false,
   data: null,
   error: "",
+  linkHash: "",
 }
 
 export const userSpecifiedReducer = handleActions<
@@ -108,9 +118,53 @@ export const userSpecifiedReducer = handleActions<
         loading: false,
       }
     },
+    [actionNames.GET_LINK_FOR_REVIEW_MASTER_REQUEST]: (state, action) => {
+      return {
+        ...state,
+        linkHash: "",
+      }
+    },
+    [actionNames.GET_LINK_FOR_REVIEW_MASTER_RESPONSE]: (state, action) => {
+      return {
+        ...state,
+        linkHash: action.payload.linkHash || "",
+      }
+    },
   },
   initialState
 )
+
+export function* handleGetLinkForReviewMaster() {
+  while (true) {
+    const action = yield take(actions.getLinkForReviewMasterRequest)
+    const reviewMaster: ReviewMaster = action.payload.reviewMaster
+    const user: User = action.payload.user
+
+    const { ok, err } = yield call(
+      lazyProtect<AxiosResponse, AxiosError>(
+        axios.get(
+          `${API_URL}/review/master/link/${reviewMaster.id}/${user.id}`,
+          {
+            withCredentials: true,
+            headers: { ...authenticatedHeader(), ...defaultHeaders },
+          }
+        )
+      )
+    )
+
+    if (err || ok.status != 200) {
+      yield put(actions.getLinkForReviewMasterResponse({}))
+
+      continue
+    }
+
+    const dataHash = ok.data.data
+    console.log("Received datahash")
+    console.log(dataHash)
+
+    yield put(actions.getLinkForReviewMasterResponse({ linkHash: dataHash.id }))
+  }
+}
 
 export function* handleGetUser() {
   while (true) {
@@ -137,6 +191,7 @@ export function* handleGetUser() {
     user.reviewMasters = data.reviewMasters
     user.reviews = data.reviews
     user.teams = data.teams
+    user.reviewingMasters = data.reviewingMasters
 
     yield put(actions.getUserResponse({ error: "", data: user }))
   }
@@ -176,7 +231,7 @@ export function* handleUpdateUser() {
     user.reviewMasters = data.reviewMasters
     user.reviews = data.reviews
     user.teams = data.teams
-
+    user.reviewingMasters = data.reviewingMasters
 
     yield put(NotificationMessageActions.info(`Updated user ${userName}.`))
     yield put(actions.updateUserResponse({ error: "", data: user }))
