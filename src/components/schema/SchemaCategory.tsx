@@ -131,7 +131,7 @@ class SchemaCategory extends React.Component<Props, State> {
       <div className={schemaStyle.category} key={`category-div-${data.id}`}>
         <div
           key={`category-title-bar-${data.id}`}
-          className={cx(schemaStyle.categoryTitleBar, style.mb06)}>
+          className={cx(schemaStyle.categoryTitleBar, "mb06")}>
           <h1 key={`category-title-name-${data.id}`}>{name}</h1>
           <div key={`category-title-iconBar-${data.id}`}>
             {data.order > 0 && (
@@ -148,7 +148,7 @@ class SchemaCategory extends React.Component<Props, State> {
         </div>
         <Line
           key={`category-separator-${data.id}`}
-          className={cx(style.mb06)}
+          className={"mb06"}
         />
         <Section size="full" key={`category-section-${data.id}`}>
           <Subsection

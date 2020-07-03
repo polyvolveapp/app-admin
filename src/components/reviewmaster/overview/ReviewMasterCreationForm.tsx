@@ -23,6 +23,7 @@ import {
   componentStyle,
   modalStyle,
   reviewMasterOverviewStyle,
+  overviewStyle,
 } from "../../../lib/reexports"
 import {
   ReviewMasterContainerType,
@@ -113,7 +114,11 @@ export default class ReviewMasterCreateForm extends DateHandler<
                     items={[{ name: "Singular" }, { name: "Recurring" }]}
                   />
                 </div>
-                <div className={modalStyle.modalInner}>
+                <div
+                  className={cx(
+                    modalStyle.modalInner,
+                    overviewStyle.overviewModalInner
+                  )}>
                   <div
                     className={cx(
                       modalStyle.modalFormRow,
